@@ -1,0 +1,19 @@
+{
+    "@entry":"welcome",
+    "welcome":[
+            {
+                "function":"Save",
+                "param":["param1","param2"]
+            },{
+                "function":"function2",
+                "param":["param1","param2"],
+                "goto":{
+                        "ans1":"step1",
+                        "ans2":"goON",
+                        "default":"step3"
+                }
+            }
+        ]
+
+
+}
