@@ -42,6 +42,7 @@ public class jsonFactory implements interpreterFactory {
                     JSONObject json = (JSONObject)jsonArray.get(i);
                     step.addFunction(registry.func.get(json.getString(registry.function)).buildByJson(json));
                 }
+                newExecutor.addStep(step);
             }
         }
 

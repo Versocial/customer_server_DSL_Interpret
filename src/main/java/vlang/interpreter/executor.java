@@ -1,5 +1,8 @@
 package vlang.interpreter;
 
+import vlang.globalSetting;
+import vlang.interpreter.functions.exit;
+
 import java.util.HashMap;
 
 public class executor implements Runnable {
@@ -17,18 +20,20 @@ public class executor implements Runnable {
         this.entryStep = entryStep;
     }
 
-    public void addStep(String name,Step code){
-        steps.put(name,code);
-    }
-
     @Override
     public void run() {
         String stepTogo=entryStep;
         while (stepTogo!=registry.exit){
+            if(!steps.containsKey(stepTogo)){
+                globalSetting.log.info("exit when unkown step: "+stepTogo);
+                break;
+            }
             stepTogo=steps.get(stepTogo).exe();
         };
     }
 
-
+    public void addStep(Step step) {
+        steps.put(step.name(),step);
+    }
 }
 

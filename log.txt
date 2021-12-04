@@ -1,0 +1,32 @@
+12月 04, 2021 6:07:20 下午 vlang.globalSetting init
+信息:  log start..
+12月 04, 2021 6:07:20 下午 vlang.interpreter.factorys.jsonFactory createBy
+信息: starting interpreter by /V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.json..
+12月 04, 2021 6:07:20 下午 vlang.interpreter.functions.save exe
+信息: save
+12月 04, 2021 6:07:20 下午 vlang.interpreter.functions.speak exe
+信息: speak
+12月 04, 2021 6:07:35 下午 vlang.interpreter.functions.listen exe
+信息: listen:ans1
+12月 04, 2021 6:07:35 下午 vlang.interpreter.functions.save exe
+信息: save
+12月 04, 2021 6:07:35 下午 vlang.interpreter.functions.speak exe
+信息: speak
+12月 04, 2021 6:07:40 下午 vlang.interpreter.functions.listen exe
+信息: listen:ans1
+12月 04, 2021 6:07:40 下午 vlang.interpreter.functions.save exe
+信息: save
+12月 04, 2021 6:07:40 下午 vlang.interpreter.functions.speak exe
+信息: speak
+12月 04, 2021 6:07:45 下午 vlang.interpreter.functions.listen exe
+信息: listen:ans1
+12月 04, 2021 6:07:45 下午 vlang.interpreter.functions.save exe
+信息: save
+12月 04, 2021 6:07:45 下午 vlang.interpreter.functions.speak exe
+信息: speak
+12月 04, 2021 6:07:50 下午 vlang.interpreter.functions.listen exe
+信息: listen:ans1
+12月 04, 2021 6:07:50 下午 vlang.interpreter.functions.save exe
+信息: save
+12月 04, 2021 6:07:50 下午 vlang.interpreter.functions.speak exe
+信息: speak

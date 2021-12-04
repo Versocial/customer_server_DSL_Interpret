@@ -1,8 +1,10 @@
 package vlang.interpreter.functions;
 
 import org.json.JSONObject;
+import vlang.globalSetting;
 import vlang.interpreter.function;
 import vlang.interpreter.globalInfo;
+import vlang.interpreter.registry;
 
 import java.sql.Savepoint;
 
@@ -11,7 +13,8 @@ public class save extends function {
 
     @Override
     public String exe(globalInfo customerInfo) {
-        return null;
+        globalSetting.log.info("save");
+        return registry.goOn;
     }
 
     @Override

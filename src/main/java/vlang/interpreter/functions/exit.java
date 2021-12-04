@@ -1,26 +1,20 @@
 package vlang.interpreter.functions;
 
 import org.json.JSONObject;
+import vlang.globalSetting;
 import vlang.interpreter.function;
 import vlang.interpreter.globalInfo;
 import vlang.interpreter.registry;
 
-public class askManualService extends function {
-    public static final String name="Manual";
-
-    public askManualService(){
-
-    }
-
-
+public class exit extends function {
     @Override
     public String exe(globalInfo customerInfo) {
-        return registry.goOn;
+        globalSetting.log.info("exit.");
+        return registry.exit;
     }
 
     @Override
     public function buildByJson(JSONObject jsonObject) {
-        askManualService func=new askManualService();
-        return func;
+        return new exit();
     }
 }

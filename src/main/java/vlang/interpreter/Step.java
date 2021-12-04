@@ -26,5 +26,9 @@ public class Step{
             }
             return stepTogo;
         }
+
+        public String name(){
+            return name;
+        }
  }
 

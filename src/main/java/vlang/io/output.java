@@ -1,9 +1,13 @@
 package vlang.io;
+import  vlang.io.media.outputMedia;
+import vlang.globalSetting;
 
-import vlang.io.media.outputMedia;
+public class output {
+    outputMedia outputMedia;
+    public output(outputMedia outputMedia){
+        this.outputMedia=outputMedia;
+    }
 
-public abstract class output {
-    vlang.io.media.outputMedia outputMedia;
     public void puts(String info){
         outputMedia.puts(info);
     };

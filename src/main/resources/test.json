@@ -5,12 +5,20 @@
                 "function":"Save",
                 "param":["param1","param2"]
             },{
-                "function":"function2",
+                "function":"Speak",
                 "param":["param1","param2"],
                 "goto":{
                         "ans1":"step1",
                         "ans2":"goON",
                         "default":"step3"
+                }
+            },{
+                "function":"Listen",
+                "time":5000,
+                "goto":{
+                        "ans1":"welcome",
+                        "ans2":"goon",
+                        "$#default":"@#exit"
                 }
             }
         ]
