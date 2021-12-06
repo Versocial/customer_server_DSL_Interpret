@@ -4,9 +4,12 @@ import vlang.interpreter.functions.askManualService;
 import vlang.interpreter.functions.listen;
 import vlang.interpreter.functions.save;
 import vlang.interpreter.functions.speak;
+import vlang.interpreter.functions.exit;
 
 import javax.print.attribute.standard.MediaSize;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class registry {
 
@@ -23,11 +26,15 @@ public abstract class registry {
     public final static String listenFailure="$@failure";
     public final static String nlpFailure="$@nlpFailure";
 
+    public static final Set<String> keys= new HashSet<String>() {{
+        add(listen.name);
+        add(askManualService.name);
+    }};
 
     public final static HashMap<String,?extends function> func=new HashMap<>(){{
                put(listen.name,new listen());
                put(askManualService.name,new askManualService());
-               put(save.name,new save());
+               put(vlang.interpreter.functions.exit.name,new save());
                put(speak.name,new speak());
     }};
 }

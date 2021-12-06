@@ -1,4 +1,4 @@
-package vlang.interpreter.factorys;
+package vlang.interpreter.exefactorys;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,15 +9,16 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-public class jsonFactory implements interpreterFactory {
+public class exeFactoryByJson implements executorFactory {
 
     @Override
     public executor createBy(String path) {
         Scanner scanner=null;
-        if(new File(path).isFile())
-            System.out.println("is");
+        if(!new File(path).isFile())
+            globalSetting.log.warning("Can not open file: "+path);
         else
-            System.out.println("not");
+            globalSetting.log.info("Open file Successfully:"+path);
+
         try {
             scanner=new Scanner(new File(path), StandardCharsets.UTF_8.name());
         } catch (IOException e) {

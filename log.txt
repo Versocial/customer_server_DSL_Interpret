@@ -1,32 +1,32 @@
-12тб 04, 2021 6:07:20 обнГ vlang.globalSetting init
-пео╒:  log start..
-12тб 04, 2021 6:07:20 обнГ vlang.interpreter.factorys.jsonFactory createBy
-пео╒: starting interpreter by /V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.json..
-12тб 04, 2021 6:07:20 обнГ vlang.interpreter.functions.save exe
-пео╒: save
-12тб 04, 2021 6:07:20 обнГ vlang.interpreter.functions.speak exe
-пео╒: speak
-12тб 04, 2021 6:07:35 обнГ vlang.interpreter.functions.listen exe
-пео╒: listen:ans1
-12тб 04, 2021 6:07:35 обнГ vlang.interpreter.functions.save exe
-пео╒: save
-12тб 04, 2021 6:07:35 обнГ vlang.interpreter.functions.speak exe
-пео╒: speak
-12тб 04, 2021 6:07:40 обнГ vlang.interpreter.functions.listen exe
-пео╒: listen:ans1
-12тб 04, 2021 6:07:40 обнГ vlang.interpreter.functions.save exe
-пео╒: save
-12тб 04, 2021 6:07:40 обнГ vlang.interpreter.functions.speak exe
-пео╒: speak
-12тб 04, 2021 6:07:45 обнГ vlang.interpreter.functions.listen exe
-пео╒: listen:ans1
-12тб 04, 2021 6:07:45 обнГ vlang.interpreter.functions.save exe
-пео╒: save
-12тб 04, 2021 6:07:45 обнГ vlang.interpreter.functions.speak exe
-пео╒: speak
-12тб 04, 2021 6:07:50 обнГ vlang.interpreter.functions.listen exe
-пео╒: listen:ans1
-12тб 04, 2021 6:07:50 обнГ vlang.interpreter.functions.save exe
-пео╒: save
-12тб 04, 2021 6:07:50 обнГ vlang.interpreter.functions.speak exe
-пео╒: speak
+12О©╫О©╫ 04, 2021 6:07:20 О©╫О©╫О©╫О©╫ vlang.globalSetting init
+О©╫О©╫о╒:  log start..
+12О©╫О©╫ 04, 2021 6:07:20 О©╫О©╫О©╫О©╫ vlang.interpreter.exefactorys.exeFactoryByJson createBy
+О©╫О©╫о╒: starting interpreter by /V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.json..
+12О©╫О©╫ 04, 2021 6:07:20 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.save exe
+О©╫О©╫о╒: save
+12О©╫О©╫ 04, 2021 6:07:20 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.speak exe
+О©╫О©╫о╒: speak
+12О©╫О©╫ 04, 2021 6:07:35 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.listen exe
+О©╫О©╫о╒: listen:ans1
+12О©╫О©╫ 04, 2021 6:07:35 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.save exe
+О©╫О©╫о╒: save
+12О©╫О©╫ 04, 2021 6:07:35 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.speak exe
+О©╫О©╫о╒: speak
+12О©╫О©╫ 04, 2021 6:07:40 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.listen exe
+О©╫О©╫о╒: listen:ans1
+12О©╫О©╫ 04, 2021 6:07:40 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.save exe
+О©╫О©╫о╒: save
+12О©╫О©╫ 04, 2021 6:07:40 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.speak exe
+О©╫О©╫о╒: speak
+12О©╫О©╫ 04, 2021 6:07:45 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.listen exe
+О©╫О©╫о╒: listen:ans1
+12О©╫О©╫ 04, 2021 6:07:45 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.save exe
+О©╫О©╫о╒: save
+12О©╫О©╫ 04, 2021 6:07:45 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.speak exe
+О©╫О©╫о╒: speak
+12О©╫О©╫ 04, 2021 6:07:50 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.listen exe
+О©╫О©╫о╒: listen:ans1
+12О©╫О©╫ 04, 2021 6:07:50 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.save exe
+О©╫О©╫о╒: save
+12О©╫О©╫ 04, 2021 6:07:50 О©╫О©╫О©╫О©╫ vlang.interpreter.functions.speak exe
+О©╫О©╫о╒: speak

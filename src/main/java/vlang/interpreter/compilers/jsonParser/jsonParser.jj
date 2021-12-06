@@ -1,0 +1,49 @@
+PARSER_BEGIN(jsonParser)
+
+import java.io.InputStreamReader;
+public class jsonParser{
+    public static void main(String[] args)  throws ParseException, TokenMgrError{
+        jsonParser parser= new Adder(new InputStreamReader(new FileInputStream(Adder.class.getClassLoader().getResource("./test.txt").getPath())));
+        System.out.println(parser.start());
+    }
+}}
+}
+PARSER_END(jsonParser)
+
+SKIP:{
+    " " 
+    | "\t"
+    | "\n"
+    | "\r"
+    | "\r\n"
+}
+
+TOKEN:{
+    <PLUS :"+">
+    |<NUMBER:(["0"-"9"])+>
+}
+
+int start() throws NumberFormatException:
+{
+    Token a;
+    int i;
+    int value;
+}
+{
+    value=primary()
+    (
+        <PLUS>
+        i=primary()
+        {value += i;}
+        )*<EOF>
+    {return value;}
+}
+
+int primary() throws NumberFormatException:
+{
+    Token t;
+}
+{
+    t=<NUMBER>
+    {return Integer.parseInt(t.image);}
+}

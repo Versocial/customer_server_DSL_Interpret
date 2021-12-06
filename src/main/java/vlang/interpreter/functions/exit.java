@@ -7,6 +7,7 @@ import vlang.interpreter.globalInfo;
 import vlang.interpreter.registry;
 
 public class exit extends function {
+    public static final String name="exit";
     @Override
     public String exe(globalInfo customerInfo) {
         globalSetting.log.info("exit.");

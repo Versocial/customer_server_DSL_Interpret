@@ -1,6 +1,6 @@
 package vlang.interpreter;
 
-public interface interpreterFactory
+public interface executorFactory
 {
     executor createBy(String path);
 }
