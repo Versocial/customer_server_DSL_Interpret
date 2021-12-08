@@ -5,6 +5,8 @@ import vlang.interpreter.function;
 import vlang.interpreter.globalInfo;
 import vlang.interpreter.registry;
 
+import java.util.ArrayList;
+
 public class askManualService extends function {
     public static final String name="Manual";
 
@@ -22,5 +24,10 @@ public class askManualService extends function {
     public function buildByJson(JSONObject jsonObject) {
         askManualService func=new askManualService();
         return func;
+    }
+
+    @Override
+    public JSONObject buildJson(ArrayList<String> input) {
+        return null;
     }
 }

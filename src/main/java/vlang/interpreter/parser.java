@@ -1,5 +1,5 @@
 package vlang.interpreter;
 
-public interface compiler {
+public interface parser {
     public void compile(String path);
 }

@@ -1,0 +1,101 @@
+PARSER_BEGIN(jsonParser)
+
+package vlang.interpreter.parsers.jsonParser;
+import java.io.IOException;
+import java.util.ArrayList;
+import org.json.JSONArray;import org.json.JSONObject;import vlang.globalSetting;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import vlang.interpreter.registry;
+
+public class jsonParser{
+    public static void main(String[] args)  throws ParseException, TokenMgrError, IOException {
+        globalSetting.init();
+        jsonParser parser= new jsonParser(new InputStreamReader(new FileInputStream(jsonParser.class.getClassLoader().getResource("./test.txt").getPath()),"UTF-8"));
+        System.out.println(parser.start());
+    }
+
+}
+
+PARSER_END(jsonParser)
+
+SKIP:{
+    " " 
+    | "\t"
+    | "\n"
+    | "\r"
+    | "\r\n"
+    | < "#" (~["\r", "\n"])* >
+}
+
+TOKEN:{
+    <STEP :"Step">
+    |<FUNCTION: "Listen"|"Save"|"Exit"|"Manual"|"Speak">
+    |<NUMBER:(["0"-"9"])+>
+    |<IDENTIFIER: (["a"-"z", "A"-"Z"])+>
+    |<STRING: "\"" (~["\""]|["\u4E00"-"\u9FA5"])* "\"">
+}
+
+JSONObject start() throws NumberFormatException:
+{
+    Token Step;
+    JSONArray son;
+    JSONObject ans=new JSONObject();
+
+}
+{
+    (
+        <STEP>
+        Step=<IDENTIFIER>
+        son= rStep()
+        {ans.put(Step.image,son);}
+        ) *
+        <EOF>
+    {return ans;}
+}
+
+JSONArray rStep():
+{
+    Token Func;
+    JSONArray ans=new JSONArray();
+    JSONObject son=new JSONObject();
+}
+{
+    (
+        Func=<FUNCTION>
+        son=rFunc(Func.image)
+        {
+        ans.put(son);}
+    )*
+    {return ans;}
+}
+
+JSONObject rFunc(String func):
+{
+    JSONObject ans;
+    Token now=null;
+     ArrayList<String> tokens=new ArrayList<String>();
+}
+{
+         (
+         ((now=<NUMBER>)|(now=<STRING>)|(now=<IDENTIFIER>))
+         {tokens.add(now.image);
+        //globalSetting.log.info(now.image+":"+func);
+            }
+
+         )*
+       {
+        ans=registry.func.get(func).buildJson(tokens).put(registry.function,func);
+        return ans;
+        }
+
+}
+//
+//int primary() throws NumberFormatException:
+//{
+//    Token t;
+//}
+//{
+//    t=<NUMBER>
+//    {return Integer.parseInt(t.image);}
+//}

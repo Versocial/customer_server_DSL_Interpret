@@ -21,8 +21,8 @@ public abstract class registry {
     public final static String exit="exit";
     public final static String param="param";
     public final static String silenceLimt="time";
-    public final static String listenDefault="$@default";
-    public final static String listenSilence="$@silence";
+    public final static String listenDefault="Default";
+    public final static String listenSilence="Silence";
     public final static String listenFailure="$@failure";
     public final static String nlpFailure="$@nlpFailure";
 

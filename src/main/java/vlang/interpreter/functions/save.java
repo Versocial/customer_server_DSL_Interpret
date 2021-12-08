@@ -7,6 +7,7 @@ import vlang.interpreter.globalInfo;
 import vlang.interpreter.registry;
 
 import java.sql.Savepoint;
+import java.util.ArrayList;
 
 public class save extends function {
     public static final String name="Save";
@@ -21,5 +22,9 @@ public class save extends function {
     public function buildByJson(JSONObject jsonObject) {
         save func=new save();
         return func;
+    }
+
+    public JSONObject buildJson(ArrayList<String> params ){
+        return new JSONObject();
     }
 }

@@ -1,5 +1,6 @@
 package vlang.interpreter.functions;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import vlang.globalSetting;
 import vlang.interpreter.function;
@@ -28,5 +29,15 @@ public class speak extends function {
             func.toSpeak.add(jsonObject.getJSONArray(registry.param).getString(i));
         }
         return func;
+    }
+
+    @Override
+    public JSONObject buildJson(ArrayList<String> input) {
+        JSONObject jsonObject=new JSONObject();
+        JSONArray jsonArray=new JSONArray();
+        for(int i=0;i<input.size();i++)
+            jsonArray.put(input.get(i));
+        jsonObject.append(registry.param,jsonArray);
+        return jsonObject;
     }
 }

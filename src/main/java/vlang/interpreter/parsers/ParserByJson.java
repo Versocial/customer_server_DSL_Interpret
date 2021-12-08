@@ -1,13 +1,13 @@
-package vlang.interpreter.compilers;
+package vlang.interpreter.parsers;
 
 import org.json.JSONObject;
 import vlang.globalSetting;
-import vlang.interpreter.compiler;
+import vlang.interpreter.parser;
 
 import java.io.File;
 import java.util.Scanner;
 
-public class jsonCompiler implements compiler {
+public class ParserByJson implements parser {
     boolean readed=false;
     String word;
     JSONObject jsonObject=new JSONObject();

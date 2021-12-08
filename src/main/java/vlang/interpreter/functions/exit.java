@@ -6,6 +6,8 @@ import vlang.interpreter.function;
 import vlang.interpreter.globalInfo;
 import vlang.interpreter.registry;
 
+import java.util.ArrayList;
+
 public class exit extends function {
     public static final String name="exit";
     @Override
@@ -17,5 +19,10 @@ public class exit extends function {
     @Override
     public function buildByJson(JSONObject jsonObject) {
         return new exit();
+    }
+
+    @Override
+    public JSONObject buildJson(ArrayList<String> input) {
+        return null;
     }
 }
