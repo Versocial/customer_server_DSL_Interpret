@@ -21,20 +21,16 @@ public abstract class registry {
     public final static String exit="exit";
     public final static String param="param";
     public final static String silenceLimt="time";
-    public final static String listenDefault="Default";
-    public final static String listenSilence="Silence";
+    public final static String listenDefault="$@Default";
+    public final static String listenSilence="$@Silence";
     public final static String listenFailure="$@failure";
     public final static String nlpFailure="$@nlpFailure";
 
-    public static final Set<String> keys= new HashSet<String>() {{
-        add(listen.name);
-        add(askManualService.name);
-    }};
 
     public final static HashMap<String,?extends function> func=new HashMap<>(){{
                put(listen.name,new listen());
                put(askManualService.name,new askManualService());
-               put(vlang.interpreter.functions.exit.name,new save());
+               put(vlang.interpreter.functions.exit.name,new exit());
                put(speak.name,new speak());
     }};
 }

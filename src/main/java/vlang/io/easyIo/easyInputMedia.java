@@ -51,7 +51,12 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
         String ansInput;
         lockLatestTime.lock();
             System.out.println("ans="+ans);
-            ansInput=ans;
+        try {
+            System.in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ansInput=ans;
         lockLatestTime.unlock();
         return new easyRowInput(ansInput);
     }

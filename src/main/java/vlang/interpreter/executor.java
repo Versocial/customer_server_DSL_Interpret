@@ -25,7 +25,7 @@ public class executor implements Runnable {
         String stepTogo=entryStep;
         while (stepTogo!=registry.exit){
             if(!steps.containsKey(stepTogo)){
-                globalSetting.log.info("exit when unkown step: "+stepTogo);
+                globalSetting.log.info("exit when unknown step: "+stepTogo);
                 break;
             }
             stepTogo=steps.get(stepTogo).exe();

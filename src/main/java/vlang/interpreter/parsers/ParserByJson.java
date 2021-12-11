@@ -14,11 +14,11 @@ public class ParserByJson implements parser {
     Scanner scanner ;
 
     @Override
-    public void compile(String path) {
-        if(!new File(path).isFile())
-            globalSetting.log.warning("Can not open file: "+path);
+    public void parse(String inPath,String outPath) {
+        if(!new File(inPath).isFile())
+            globalSetting.log.warning("Can not open file: "+inPath);
         else
-            globalSetting.log.info("Open file Successfully:"+path);
+            globalSetting.log.info("Open file Successfully:"+inPath);
 
         //while()
 

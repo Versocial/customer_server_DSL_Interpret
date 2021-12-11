@@ -1,7 +1,5 @@
 package vlang.interpreter.functions;
 
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 import vlang.globalSetting;
 import vlang.interpreter.function;
@@ -14,9 +12,9 @@ import java.util.HashMap;
 
 public class listen extends function {
     public static final String name="Listen";
-    public static final String silence=registry.listenSilence;
+    public static final String silence="Silence";
     public static final String branch="Branch";
-    public static final String defaults=registry.listenDefault;
+    public static final String defaults="Default";
     private int silenceLimit;
     private Integer index=0;
 
@@ -51,7 +49,7 @@ public class listen extends function {
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
         JSONObject jsonObject=new JSONObject();
-        jsonObject.put(registry.goTo,new JSONArray());
+        jsonObject.put(registry.goTo,new JSONObject());
         int t= Math.max(input.size(), 2);
         word w = new word("@unkown");
         boolean repeat=true;
@@ -113,13 +111,18 @@ public class listen extends function {
             globalSetting.log.warning("The Listen Already has a Step id " + jsonObject.get(input.get(index)) + " for " + input.get(index));
             return ok;
         }
+        word w = new word(input.get(index));
+        if(silence.equals(w.getInfo()))
+            w.setInfo(registry.listenSilence);
+        if(defaults.equals(w.getInfo()))
+            w.setInfo(registry.listenDefault);
         index++;
         if(index>=input.size())
             globalSetting.log.warning("expected a Step Id but got nothing");
         else if(new word(input.get(index)).getType()!=word.Type.id)
             globalSetting.log.warning("expected a Step Id but got "+input.get(index));
         else {
-            jsonObject.getJSONArray(registry.goTo).put(new JSONObject().put(new word(input.get(index-1)).getInfo(),input.get(index)));
+            jsonObject.getJSONObject(registry.goTo).put(w.getInfo(),input.get(index));
             ok=true;
         }
         return ok;

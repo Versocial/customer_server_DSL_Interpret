@@ -13,13 +13,15 @@ public interface jsonParserConstants {
   /** RegularExpression Id. */
   int STEP = 7;
   /** RegularExpression Id. */
-  int FUNCTION = 8;
+  int ENTRY = 8;
   /** RegularExpression Id. */
-  int NUMBER = 9;
+  int FUNCTION = 9;
   /** RegularExpression Id. */
-  int IDENTIFIER = 10;
+  int NUMBER = 10;
   /** RegularExpression Id. */
-  int STRING = 11;
+  int IDENTIFIER = 11;
+  /** RegularExpression Id. */
+  int STRING = 12;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -34,6 +36,7 @@ public interface jsonParserConstants {
     "\"\\r\\n\"",
     "<token of kind 6>",
     "\"Step\"",
+    "\"@entry\"",
     "<FUNCTION>",
     "<NUMBER>",
     "<IDENTIFIER>",

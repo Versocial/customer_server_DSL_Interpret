@@ -37,7 +37,7 @@ public class speak extends function {
         JSONArray jsonArray=new JSONArray();
         for(int i=0;i<input.size();i++)
             jsonArray.put(input.get(i));
-        jsonObject.append(registry.param,jsonArray);
+        jsonObject.put(registry.param,jsonArray);
         return jsonObject;
     }
 }

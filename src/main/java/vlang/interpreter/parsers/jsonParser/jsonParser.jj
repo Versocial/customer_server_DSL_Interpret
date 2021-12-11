@@ -1,26 +1,49 @@
 PARSER_BEGIN(jsonParser)
 
 package vlang.interpreter.parsers.jsonParser;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.json.JSONArray;import org.json.JSONObject;import vlang.globalSetting;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
+import java.io.*;
 import vlang.interpreter.registry;
+import vlang.interpreter.parser;
 
-public class jsonParser{
-    public static void main(String[] args)  throws ParseException, TokenMgrError, IOException {
-        globalSetting.init();
-        jsonParser parser= new jsonParser(new InputStreamReader(new FileInputStream(jsonParser.class.getClassLoader().getResource("./test.txt").getPath()),"UTF-8"));
-        System.out.println(parser.start());
+public class jsonParser implements parser{
+    private  static int errorNum=0;
+    private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
+
+    public jsonParser(){
+
     }
+
+    public  void parse(String inPath,String outPath)throws IOException {
+        errorNum=0;
+        globalSetting.init();
+        jsonParser parser= new jsonParser(new InputStreamReader(new FileInputStream(inPath),"UTF-8"));
+        JSONObject jsonObject = null;
+            try {
+                   jsonObject = parser.start();
+                 } catch (ParseException e) {
+                   e.printStackTrace();
+                 }
+                System.out.println(jsonObject);
+                                BufferedWriter writer= new BufferedWriter( new FileWriter( outPath));
+                                writer.write( jsonObject.toString());
+                                writer.close();
+        if(errorNum>0){
+            globalSetting.log.warning("Parse Fail : "+errorNum+" errors detected.");
+        }
+        else
+            globalSetting.log.warning("Parse Success.");
+    }
+
+
 
 }
 
 PARSER_END(jsonParser)
 
 SKIP:{
-    " " 
+    " "
     | "\t"
     | "\n"
     | "\r"
@@ -30,6 +53,7 @@ SKIP:{
 
 TOKEN:{
     <STEP :"Step">
+    |<ENTRY:"@entry">
     |<FUNCTION: "Listen"|"Save"|"Exit"|"Manual"|"Speak">
     |<NUMBER:(["0"-"9"])+>
     |<IDENTIFIER: (["a"-"z", "A"-"Z"])+>
@@ -44,23 +68,53 @@ JSONObject start() throws NumberFormatException:
 
 }
 {
+
     (
-        <STEP>
-        Step=<IDENTIFIER>
-        son= rStep()
-        {ans.put(Step.image,son);}
-        ) *
+            <STEP>
+            Step=<IDENTIFIER>
+            son= rStep()
+            {
+            if(ans.has(Step.image)){
+                globalSetting.log.warning("Step "+Step.image+" has already defined.\n");
+                errorNum++;
+            }
+
+            if(son.get(0).equals(entrySymbol)){
+                son.remove(0);
+                if(ans.has(registry.entry)){
+                globalSetting.log.warning("Entry has already defined as "+ans.getString(registry.entry)+" but "+Step.image);
+                errorNum++;
+                }
+                else
+                   ans.put(registry.entry,Step.image);
+                }
+            globalSetting.log.info("Finish parse Step "+Step.image);
+            ans.put(Step.image,son);
+            }
+            ) *
         <EOF>
-    {return ans;}
+    {
+    if(!ans.has(registry.entry)){
+                    globalSetting.log.warning("Entry is not defined");
+                    errorNum++;
+                }
+    return ans;
+    }
 }
 
 JSONArray rStep():
 {
-    Token Func;
+    Token Func = null;
     JSONArray ans=new JSONArray();
     JSONObject son=new JSONObject();
 }
 {
+    (
+        <ENTRY>
+        {
+        ans.put( entrySymbol);
+        }
+     )?
     (
         Func=<FUNCTION>
         son=rFunc(Func.image)
@@ -80,7 +134,6 @@ JSONObject rFunc(String func):
          (
          ((now=<NUMBER>)|(now=<STRING>)|(now=<IDENTIFIER>))
          {tokens.add(now.image);
-        //globalSetting.log.info(now.image+":"+func);
             }
 
          )*

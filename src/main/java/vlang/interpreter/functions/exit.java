@@ -9,7 +9,7 @@ import vlang.interpreter.registry;
 import java.util.ArrayList;
 
 public class exit extends function {
-    public static final String name="exit";
+    public static final String name="Exit";
     @Override
     public String exe(globalInfo customerInfo) {
         globalSetting.log.info("exit.");
@@ -23,6 +23,6 @@ public class exit extends function {
 
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
-        return null;
+        return new JSONObject();
     }
 }

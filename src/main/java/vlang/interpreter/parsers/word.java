@@ -12,7 +12,7 @@ public class word {
     private static final HashMap<String,Type> patterns=new HashMap<>(){{
         put("[0-9]+",Type.num);
         put("[A-Za-z]+",Type.id);
-        put("\"[\u4E00-\u9FA5^\"\\w\\d!?.,]*\"",Type.string);
+        put("\"[\u4E00-\u9FA5^\"\\w\\d!?.,$]*\"",Type.string);
         put("Silence|Branch|Default",Type.branch);
     }};
 
@@ -39,5 +39,9 @@ public class word {
 
     public String getInfo() {
         return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
