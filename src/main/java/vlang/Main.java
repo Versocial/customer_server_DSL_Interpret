@@ -2,7 +2,6 @@ package vlang;
 
 import vlang.interpreter.executor;
 import vlang.interpreter.exefactorys.exeFactoryByJson;
-import vlang.interpreter.parsers.jsonParser.jsonParser;
 
 import java.io.*;
 

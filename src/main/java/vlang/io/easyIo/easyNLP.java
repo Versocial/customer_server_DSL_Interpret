@@ -26,6 +26,6 @@ public class easyNLP implements NLP<easyRowInput> {
                 }
             }
         }
-        return new analyzedInput(ans);
+          return new analyzedInput(ans);
     }
 }
