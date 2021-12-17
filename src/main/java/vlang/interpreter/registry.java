@@ -2,14 +2,10 @@ package vlang.interpreter;
 
 import vlang.interpreter.functions.askManualService;
 import vlang.interpreter.functions.listen;
-import vlang.interpreter.functions.save;
 import vlang.interpreter.functions.speak;
 import vlang.interpreter.functions.exit;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class registry {
 

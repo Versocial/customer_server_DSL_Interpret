@@ -30,4 +30,21 @@ public class askManualService extends function {
     public JSONObject buildJson(ArrayList<String> input) {
         return null;
     }
+
+    @Override
+    public boolean hasError(JSONObject func, JSONObject executor) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeEndFunction() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeNotEndFunction() {
+        return true;
+    }
+
+
 }

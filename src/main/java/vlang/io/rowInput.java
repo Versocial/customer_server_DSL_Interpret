@@ -12,7 +12,8 @@ public interface rowInput {
 
     /**
      * 获取原始输入的类型
-     * @return 原始输入的类型
+     * @return 原始输入的类型，<br>例如返回“map3”可能表示获取的原始输入是mp3文件
+     *              <br>“String”则表示输入是一个String类实例。
      */
     public String getType() ;
 }

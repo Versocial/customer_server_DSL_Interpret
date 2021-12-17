@@ -3,7 +3,7 @@ package vlang.io.easyIo;
 import vlang.io.media.outputMedia;
 
 /**
- * 简单的输出类，输出到stdout
+ * 简单的{@link outputMedia}的实现，输出到stdout
  */
 public class easyOutputMedia implements outputMedia {
     /**

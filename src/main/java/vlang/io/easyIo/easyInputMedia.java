@@ -9,7 +9,13 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 简单的{@link inputMedia}的实现，从stdin读取，读取返回值为{@link easyRowInput}实例
+ */
 public class easyInputMedia implements inputMedia<easyRowInput> {
+    /**
+     *
+     */
     private String ans = "";
     private Semaphore timeOut=new Semaphore(0);
     private long latestTime=0;

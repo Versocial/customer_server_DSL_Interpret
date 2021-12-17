@@ -25,4 +25,21 @@ public class exit extends function {
     public JSONObject buildJson(ArrayList<String> input) {
         return new JSONObject();
     }
+
+    @Override
+    public boolean hasError(JSONObject func, JSONObject executor) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeEndFunction() {
+        return true;
+    }
+
+    @Override
+    public boolean canBeNotEndFunction() {
+        return false;
+    }
+
+
 }

@@ -1,16 +1,16 @@
 12月 11, 2021 6:25:54 下午 vlang.globalSetting init
 信息:  log start..
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser start
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
 信息: Finish parse Step welcome
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser start
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
 信息: Finish parse Step complainProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser start
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
 信息: Finish parse Step thanks
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser start
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
 信息: Finish parse Step billProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser start
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
 信息: Finish parse Step silenceProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.jsonParser.jsonParser parse
+12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser parse
 警告: Parse Success.
 12月 11, 2021 6:25:54 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
 信息: Open file Successfully:src\main\resources\out.json

@@ -1,7 +1,7 @@
 package vlang;
 
 import vlang.interpreter.parser;
-import vlang.interpreter.parsers.jsonParser.jsonParser;
+import vlang.interpreter.parsers.jsonParser;
 import vlang.io.easyIo.easyInputMedia;
 import vlang.io.easyIo.easyNLP;
 import vlang.io.easyIo.easyOutputMedia;

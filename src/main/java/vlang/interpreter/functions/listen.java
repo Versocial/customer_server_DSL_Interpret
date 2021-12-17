@@ -87,6 +87,8 @@ public class listen extends function {
     }
 
 
+
+
     private boolean gotBranch(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
         word w=new word(input.get(index));
@@ -140,5 +142,28 @@ public class listen extends function {
         else
             ok=manageSilenceDefault(jsonObject, input);
         return ok;
+    }
+
+    @Override
+    public boolean hasError(JSONObject func, JSONObject executor) {
+        boolean hasError=false;
+        for(String str: func.getJSONObject(registry.goTo).keySet()){
+            String id= func.getJSONObject(registry.goTo).getString(str);
+            if(!executor.has(id)){
+                globalSetting.log.warning("Error : "+" unknown step "+id+" on listen function detected.\n");
+                hasError=true;
+            }
+        }
+        return hasError;
+    }
+
+    @Override
+    public boolean canBeEndFunction() {
+        return true;
+    }
+
+    @Override
+    public boolean canBeNotEndFunction() {
+        return false;
     }
 }

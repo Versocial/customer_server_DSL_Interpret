@@ -40,4 +40,20 @@ public class speak extends function {
         jsonObject.put(registry.param,jsonArray);
         return jsonObject;
     }
+
+    @Override
+    public boolean hasError(JSONObject func, JSONObject executor) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeEndFunction() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeNotEndFunction() {
+        return true;
+    }
+
 }

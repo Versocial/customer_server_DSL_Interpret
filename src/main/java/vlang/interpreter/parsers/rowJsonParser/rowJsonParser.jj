@@ -1,46 +1,44 @@
-PARSER_BEGIN(jsonParser)
+PARSER_BEGIN(rowJsonParser)
 
-package vlang.interpreter.parsers.jsonParser;
+package vlang.interpreter.parsers.rowJsonParser;
 import java.util.ArrayList;
 import org.json.JSONArray;import org.json.JSONObject;import vlang.globalSetting;
 import java.io.*;
 import vlang.interpreter.registry;
 import vlang.interpreter.parser;
 
-public class jsonParser implements parser{
+public class rowJsonParser{
     private  static int errorNum=0;
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
 
-    public jsonParser(){
+    public rowJsonParser(){
 
     }
 
-    public  void parse(String inPath,String outPath)throws IOException {
+    public  JSONObject parse(String inPath)throws IOException {
         errorNum=0;
         globalSetting.init();
-        jsonParser parser= new jsonParser(new InputStreamReader(new FileInputStream(inPath),"UTF-8"));
+        rowJsonParser parser= new rowJsonParser(new InputStreamReader(new FileInputStream(inPath),"UTF-8"));
         JSONObject jsonObject = null;
-            try {
-                   jsonObject = parser.start();
-                 } catch (ParseException e) {
+        try {
+             jsonObject = parser.start();
+             } catch (ParseException e) {
                    e.printStackTrace();
-                 }
-                System.out.println(jsonObject);
-                                BufferedWriter writer= new BufferedWriter( new FileWriter( outPath));
-                                writer.write( jsonObject.toString());
-                                writer.close();
+                   };
         if(errorNum>0){
             globalSetting.log.warning("Parse Fail : "+errorNum+" errors detected.");
+            jsonObject=null;
         }
         else
-            globalSetting.log.warning("Parse Success.");
+            globalSetting.log.warning("Row Parse Success.");
+        return jsonObject;
     }
 
 
 
 }
 
-PARSER_END(jsonParser)
+PARSER_END(rowJsonParser)
 
 SKIP:{
     " "
@@ -107,6 +105,8 @@ JSONArray rStep():
     Token Func = null;
     JSONArray ans=new JSONArray();
     JSONObject son=new JSONObject();
+    boolean canEnd=false;
+    boolean canGoOn=true;
 }
 {
     (
@@ -119,9 +119,22 @@ JSONArray rStep():
         Func=<FUNCTION>
         son=rFunc(Func.image)
         {
-        ans.put(son);}
+        if(canGoOn==false){
+            globalSetting.log.warning("Unexpected another Function "+Func.image+" while step should finished.");
+            errorNum++;
+        }
+        ans.put(son);
+        canEnd= registry.func.get(Func.image).buildByJson(son).canBeEndFunction();
+        }
+
     )*
-    {return ans;}
+    {
+    if(canEnd==false){
+        globalSetting.log.warning("Expected another Function while the step shouldn't finished.");
+                    errorNum++;
+        }
+    return ans;
+    }
 }
 
 JSONObject rFunc(String func):
