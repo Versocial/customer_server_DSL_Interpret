@@ -9,8 +9,16 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-public class exeFactoryByJson implements executorFactory {
 
+/**
+ * 该类的功能是：读取待执行脚本，生成对应的执行器。
+ */
+public class exeFactoryByJson implements executorFactory {
+    /**
+     *
+     * @param path {@link parser}分析后输出的中间脚本的路径。
+     * @return 生成的执行器
+     */
     @Override
     public executor createBy(String path) {
         Scanner scanner=null;

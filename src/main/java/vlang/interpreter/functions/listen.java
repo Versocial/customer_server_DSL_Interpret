@@ -10,16 +10,44 @@ import vlang.interpreter.registry;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 从输入读取函数
+ */
 public class listen extends function {
+    /**
+     * 函数名{@value}
+     */
     public static final String name="Listen";
+    /**
+     * 用于中间脚本的符号{@value}
+     */
     public static final String silence="Silence";
+    /**
+     * 用于中间脚本的符号{@value}
+     */
     public static final String branch="Branch";
+    /**
+     * 用于中间脚本的符号{@value}
+     */
     public static final String defaults="Default";
+    /**
+     * 输入的最长沉默时间（超时后输入结束）。
+     */
     private int silenceLimit;
+    /**
+     * 由源文件构造中间脚本时给到的字符串数组下一个分析的字符串的下标。
+     */
     private Integer index=0;
 
+    /**
+     * 输入识别到的结果（来自自然语言处理的结果）对应的（散列到）跳转到的步骤名。
+     */
     HashMap<String,String> toRecongnize=new HashMap<>();
 
+    /**
+     * @return 跳转到的步骤 或 输入失败 或 自然语言分析失败
+     * @inheritDoc
+     */
     @Override
     public String exe(globalInfo globalInfo) {
 
@@ -36,6 +64,9 @@ public class listen extends function {
             return registry.nlpFailure;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public function buildByJson(JSONObject jsonObject) {
         listen func=new listen();
@@ -46,6 +77,9 @@ public class listen extends function {
         return func;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
         JSONObject jsonObject=new JSONObject();
@@ -87,8 +121,13 @@ public class listen extends function {
     }
 
 
-
-
+    /**
+     * 将输入的字符串序列中的Branch/Silence/Default结构转化为JSONObject格式添加到JsonObject上
+     * <br>调用后面的manageBranch和manageSilenceDefault函数。
+     * @param jsonObject buildJson中要构造的JSONObject
+     * @param input 输入的字符串序列
+     * @return 返回转化是否成功，成功则返回true，否则返回false
+     */
     private boolean gotBranch(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
         word w=new word(input.get(index));
@@ -107,6 +146,12 @@ public class listen extends function {
         return ok;
     }
 
+    /**
+     * 将输入的字符串序列中的Silence/Default结构转化为JSONObject格式添加到JsonObject上
+     * @param jsonObject buildJson中要构造的JSONObject
+     * @param input 输入的字符串序列
+     * @return 返回转化是否成功，成功则返回true，否则返回false
+     */
     private boolean manageSilenceDefault(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
         if(jsonObject.has(input.get(index))) {
@@ -129,7 +174,12 @@ public class listen extends function {
         }
         return ok;
     }
-
+    /**
+     * 将输入的字符串序列中的Branch结构转化为JSONObject格式添加到JsonObject上
+     * @param jsonObject buildJson中要构造的JSONObject
+     * @param input 输入的字符串序列
+     * @return 返回转化是否成功，成功则返回true，否则返回false
+     */
     private boolean manageBranch(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
         index++;
@@ -144,8 +194,12 @@ public class listen extends function {
         return ok;
     }
 
+    /**
+     * @return 若listen函数的跳转Step中有未声明的，则报错并返回true，否则返回false
+     * @inheritDoc
+     */
     @Override
-    public boolean hasError(JSONObject func, JSONObject executor) {
+    public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
         boolean hasError=false;
         for(String str: func.getJSONObject(registry.goTo).keySet()){
             String id= func.getJSONObject(registry.goTo).getString(str);
@@ -157,11 +211,18 @@ public class listen extends function {
         return hasError;
     }
 
+    /**
+     * @return true，listen函数可以且只能作为一个步骤的最后一个函数。
+     * @inheritDoc
+     */
     @Override
     public boolean canBeEndFunction() {
         return true;
     }
-
+    /**
+     * @return false，listen函数后面不能跟着更多函数。
+     * @inheritDoc
+     */
     @Override
     public boolean canBeNotEndFunction() {
         return false;

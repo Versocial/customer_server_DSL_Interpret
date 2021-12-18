@@ -52,7 +52,11 @@ public class Step{
             return stepTogo;
         }
 
-        public String name(){
+    /**
+     * 步骤名
+     * @return 返回步骤名
+     */
+    public String name(){
             return name;
         }
  }

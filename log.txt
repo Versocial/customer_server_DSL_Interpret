@@ -1,104 +1,26 @@
-12月 11, 2021 6:25:54 下午 vlang.globalSetting init
+12月 17, 2021 9:45:53 下午 vlang.globalSetting init
 信息:  log start..
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.jsonParser parse
+信息: Open file Successfully:/V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.txt
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step welcome
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step complainProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step thanks
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step billProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser start
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step silenceProc
-12月 11, 2021 6:25:54 下午 vlang.interpreter.parsers.rowJsonParser.jsonParser parse
+12月 17, 2021 9:45:53 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser parse
 警告: Parse Success.
-12月 11, 2021 6:25:54 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
+12月 17, 2021 9:45:53 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
 信息: Open file Successfully:src\main\resources\out.json
-12月 11, 2021 6:25:54 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
+12月 17, 2021 9:45:53 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
 信息: starting interpreter by src\main\resources\out.json..
-12月 11, 2021 6:25:54 下午 vlang.interpreter.functions.speak exe
+12月 17, 2021 9:45:53 下午 vlang.interpreter.functions.speak exe
 信息: speak
-12月 11, 2021 6:26:09 下午 vlang.interpreter.functions.listen exe
+12月 17, 2021 9:46:28 下午 vlang.interpreter.functions.listen exe
 信息: listen:$@Silence
-12月 11, 2021 6:26:09 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:14 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:14 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:19 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:19 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:24 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:24 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:29 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:29 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:34 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:34 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:39 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:39 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:44 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:44 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:49 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:49 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:54 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:54 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:26:59 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:26:59 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:04 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:04 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:09 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:09 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:14 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:14 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:19 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:19 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:24 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:24 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:29 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:29 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:34 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:34 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:39 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:39 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:44 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:44 下午 vlang.interpreter.functions.speak exe
-信息: speak
-12月 11, 2021 6:27:50 下午 vlang.interpreter.functions.listen exe
-信息: listen:$@Silence
-12月 11, 2021 6:27:50 下午 vlang.interpreter.functions.speak exe
+12月 17, 2021 9:46:28 下午 vlang.interpreter.functions.speak exe
 信息: speak
