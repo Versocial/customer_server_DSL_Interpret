@@ -11,6 +11,10 @@ public class easyRowInput implements rowInput {
      */
     private String information;
 
+    /**
+     * 构造函数
+     * @param information 原始输入的字符串
+     */
     public easyRowInput(String information) {
         this.information = information;
     }

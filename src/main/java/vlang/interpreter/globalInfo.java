@@ -27,8 +27,8 @@ public class globalInfo {
     /**
      * 构造函数，配置时默认用{@link globalSetting}中的输入输出媒体和自然语言处理模块.
      */
-    public globalInfo(){
-        clientInfo= new clientInfo(123456);
+    public globalInfo(int clientID){
+        clientInfo= new clientInfo(clientID);
         in = new input(globalSetting.NLprocessor,globalSetting.inMedia);
         out =new output(globalSetting.outMedia);
     }

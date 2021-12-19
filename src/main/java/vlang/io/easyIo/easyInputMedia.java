@@ -12,26 +12,43 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 简单的{@link inputMedia}的实现，从stdin读取，读取返回值为{@link easyRowInput}实例
+ * 简单的{@link inputMedia}的实现，从跳出的Jframe输入框读取，读取返回值为{@link easyRowInput}实例
  */
 public class easyInputMedia implements inputMedia<easyRowInput> {
     /**
-     *
+     * 信号量：是否超时
      */
     private Semaphore timeOut=new Semaphore(0);
+    /**
+     * 最后一次输入的时间
+     */
     private long latestTime=0;
+    /**
+     * 锁，确保对latestTime的访问互斥
+     */
     private Lock lockLatestTime=new ReentrantLock();
+    /**
+     * 输入框
+     */
     private JFrame frame = new JFrame("Waiting for your input...");
+    /**
+     * 输入框上的文本框
+     */
     JTextField userText = new JTextField(100);
+    /**
+     * 输入框部件
+     */
     JPanel panel = new JPanel();
 
+    /**
+     * 输入监听器，该类用于文本框在有输入时更新latestTime。
+     */
     protected class insertListener implements DocumentListener {
         @Override
         public void insertUpdate(DocumentEvent e) {
             lockLatestTime.lock();
             latestTime=System.currentTimeMillis();
             lockLatestTime.unlock();
-            System.out.println("shit");
         }
 
         @Override
@@ -42,6 +59,10 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
         public void changedUpdate(DocumentEvent e) {
         }
     }
+
+    /**
+     * 构造函数，主要是对文本输入框的设置，包括布局界面设置和添加输入监听器{@link insertListener}两个方面。
+     */
     public easyInputMedia(){
         frame.setSize(1000, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,41 +77,50 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
 
     }
 
+    /**
+     * @inheritDoc
+     * */
     @Override
-    public easyRowInput gets(long silenceTime) {//silenceTime milisecond
+    public easyRowInput gets(long silenceTime) {
         latestTime=System.currentTimeMillis();
-
+        //设置JFrame可见
         frame.setVisible(true);
-
+        //启动计时器
         new Thread(new clock(silenceTime )).start();
-
+        //等待沉默超时
         try {
             timeOut.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         String ans=userText.getText();
-        System.out.println(ans);
+        //清空文本框并设置为不可见
         userText.setText("");
         frame.setVisible(false);
+        //返回获取的输入
         return new easyRowInput(ans);
     }
 
 
+    /**
+     * 计时器，当连续沉默时间超过silenceTime时设置超时信号（timeOut设置为true）。
+     */
+    protected class clock implements Runnable{
+        private long silenceTime;//毫秒，最长沉默时间
+        private long sleepTime;//毫秒，下一次判断是否超时前需要等待的时间
 
-    class clock implements Runnable{
-        private long silenceTime;//milis
-        private long sleepTime;//milis
         clock(long silenceTime){
             this.silenceTime=silenceTime;
             this.sleepTime=silenceTime;
         }
+
         @Override
         public void run() {
             boolean repeat=true;
             while(repeat){
                 try {
-                    Thread.sleep(sleepTime);
+                    Thread.sleep(sleepTime);//等待后再判断是否超时，因为sleepTime以内不可能超时。
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -98,10 +128,10 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
                 boolean isTimeOut=false;
                 lockLatestTime.lock();
                 long timeNow=System.currentTimeMillis();
-                if(timeNow-latestTime>=silenceTime)
+                if(timeNow-latestTime>=silenceTime)//若最近输入时间距离现在超过了最长沉默时间则超时。
                     isTimeOut=true;
                 else
-                    sleepTime=silenceTime-(timeNow-latestTime);
+                    sleepTime=silenceTime-(timeNow-latestTime);//否则需等待到当前的最近输入时间的silenceTime后。
                 lockLatestTime.unlock();
 
                 if(isTimeOut){

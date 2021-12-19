@@ -8,16 +8,25 @@ import vlang.interpreter.registry;
 import vlang.interpreter.parser;
 
 /**
-*
+* Parser.To convert the source file into an intermediate script that can be executed by the executor {@link vlang.interpreter.executor}.
 */
 public class rowJsonParser{
+    /**
+    * error number
+    */
     private  static int errorNum=0;
+    /**
+    * JSONObject presents the entry Step
+    */
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
 
     public rowJsonParser(){
 
     }
-
+    /**
+    * parse
+    * @param inPath path of the source file
+    */
     public  JSONObject parse(String inPath)throws IOException {
         errorNum=0;
         globalSetting.init();
@@ -104,6 +113,9 @@ JSONObject start() throws NumberFormatException:
     }
 }
 
+    /**
+    * manage parse of Step
+    */
 JSONArray rStep():
 {
     Token Func = null;
@@ -140,7 +152,9 @@ JSONArray rStep():
     return ans;
     }
 }
-
+    /**
+    * manage parse of Function
+    */
 JSONObject rFunc(String func):
 {
     JSONObject ans;
@@ -160,12 +174,3 @@ JSONObject rFunc(String func):
         }
 
 }
-//
-//int primary() throws NumberFormatException:
-//{
-//    Token t;
-//}
-//{
-//    t=<NUMBER>
-//    {return Integer.parseInt(t.image);}
-//}

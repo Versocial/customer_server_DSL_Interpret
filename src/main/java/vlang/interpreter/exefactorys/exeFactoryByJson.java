@@ -21,6 +21,7 @@ public class exeFactoryByJson implements executorFactory {
      */
     @Override
     public executor createBy(String path) {
+        //打开中间脚本
         Scanner scanner=null;
         if(!new File(path).isFile())
             globalSetting.log.warning("Can not open file: "+path);
@@ -34,19 +35,19 @@ public class exeFactoryByJson implements executorFactory {
         }
         globalSetting.log.info("starting interpreter by "+path+"..");
         executor newExecutor=new executor();
-
+        //读出脚本中所有内容并转为JSONObject格式
         String str="";
         while (scanner.hasNextLine())
             str+=scanner.nextLine();
-
         JSONObject jsonObject=new JSONObject(str);
+
         for(String key :jsonObject.keySet()){
-            if(key.equals(registry.entry))
+            if(key.equals(registry.entry))//设置入口步骤（Step）
                 newExecutor.setEntryStep(jsonObject.getString(key));
             else {
                 step step=new step(key);
                 JSONArray jsonArray=jsonObject.getJSONArray(key);
-                for(int i=0;i<jsonArray.length();i++){
+                for(int i=0;i<jsonArray.length();i++){//生成每个步骤的各个函数
                     JSONObject json = (JSONObject)jsonArray.get(i);
                     step.addFunction(registry.func.get(json.getString(registry.function)).buildByJson(json));
                 }

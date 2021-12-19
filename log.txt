@@ -1,40 +1,46 @@
-12月 19, 2021 5:49:35 下午 vlang.globalSetting init
+12月 19, 2021 5:58:17 下午 vlang.globalSetting init
 信息:  log start..
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.jsonParser parse
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.jsonParser parse
 信息: Open file Successfully:/V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.txt
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step welcome
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step complainProc
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step thanks
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step billProc
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser start
 信息: Finish parse Step silenceProc
-12月 19, 2021 5:49:36 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser parse
+12月 19, 2021 5:58:17 下午 vlang.interpreter.parsers.rowJsonParser.rowJsonParser parse
 警告: Row Parse Success.
-12月 19, 2021 5:49:36 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
+12月 19, 2021 5:58:17 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
 信息: Open file Successfully:src\main\resources\out.json
-12月 19, 2021 5:49:36 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
+12月 19, 2021 5:58:17 下午 vlang.interpreter.exefactorys.exeFactoryByJson createBy
 信息: starting interpreter by src\main\resources\out.json..
-12月 19, 2021 5:49:36 下午 vlang.interpreter.executor$1 run
+12月 19, 2021 5:58:17 下午 vlang.interpreter.executor$1 run
 信息: enter step: welcome
-12月 19, 2021 5:49:36 下午 vlang.interpreter.functions.speak exe
+12月 19, 2021 5:58:17 下午 vlang.interpreter.functions.speak exe
 信息: speak
-12月 19, 2021 5:49:48 下午 vlang.interpreter.functions.listen exe
+12月 19, 2021 5:58:35 下午 vlang.interpreter.functions.listen exe
 信息: listen:投诉
-12月 19, 2021 5:49:48 下午 vlang.interpreter.executor$1 run
+12月 19, 2021 5:58:35 下午 vlang.interpreter.executor$1 run
 信息: enter step: complainProc
-12月 19, 2021 5:49:48 下午 vlang.interpreter.functions.speak exe
+12月 19, 2021 5:58:35 下午 vlang.interpreter.functions.speak exe
 信息: speak
-12月 19, 2021 5:50:01 下午 vlang.interpreter.functions.listen exe
+12月 19, 2021 5:58:49 下午 vlang.interpreter.functions.listen exe
+信息: listen:别挂
+12月 19, 2021 5:58:49 下午 vlang.interpreter.executor$1 run
+信息: enter step: complainProc
+12月 19, 2021 5:58:49 下午 vlang.interpreter.functions.speak exe
+信息: speak
+12月 19, 2021 5:59:05 下午 vlang.interpreter.functions.listen exe
 信息: listen:$@Default
-12月 19, 2021 5:50:01 下午 vlang.interpreter.executor$1 run
+12月 19, 2021 5:59:05 下午 vlang.interpreter.executor$1 run
 信息: enter step: thanks
-12月 19, 2021 5:50:01 下午 vlang.interpreter.functions.speak exe
+12月 19, 2021 5:59:05 下午 vlang.interpreter.functions.speak exe
 信息: speak
-12月 19, 2021 5:50:01 下午 vlang.interpreter.functions.exit exe
+12月 19, 2021 5:59:05 下午 vlang.interpreter.functions.exit exe
 信息: exit.
-12月 19, 2021 5:50:01 下午 vlang.Main main
+12月 19, 2021 5:59:05 下午 vlang.Main main
 信息: finish a dialog.

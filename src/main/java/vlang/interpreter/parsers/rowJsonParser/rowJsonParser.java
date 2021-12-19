@@ -7,16 +7,25 @@ import vlang.interpreter.registry;
 import vlang.interpreter.parser;
 
 /**
-*
+* Parser.To convert the source file into an intermediate script that can be executed by the executor {@link vlang.interpreter.executor}.
 */
 public class rowJsonParser implements rowJsonParserConstants {
+    /**
+    * error number
+    */
     private  static int errorNum=0;
+    /**
+    * JSONObject presents the entry Step
+    */
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
 
     public rowJsonParser(){
 
     }
-
+    /**
+    * parse
+    * @param inPath path of the source file
+    */
     public  JSONObject parse(String inPath)throws IOException {
         errorNum=0;
         globalSetting.init();
@@ -79,6 +88,9 @@ public class rowJsonParser implements rowJsonParserConstants {
     throw new Error("Missing return statement in function");
   }
 
+/**
+* step
+*/
   static final public JSONArray rStep() throws ParseException {
     Token Func = null;
     JSONArray ans=new JSONArray();

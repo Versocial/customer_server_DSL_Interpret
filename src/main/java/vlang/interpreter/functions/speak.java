@@ -30,12 +30,14 @@ public class speak extends function {
     @Override
     public String exe(globalInfo globalInfo) {
         globalSetting.log.info("speak");
+        String ans="";
         for( word w : toSpeak) {
             String str=w.getInfo();
-            if(w.getType()== word.Type.var)
+            if(w.getType()== word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
                 str=globalInfo.clientInfo().get(w.getInfo());
-            globalInfo.getOut().puts(str);
+            ans+=str;
         }
+        globalInfo.getOut().puts(ans);
         return registry.goOn;
     }
 

@@ -51,7 +51,7 @@ public abstract class globalSetting {
     public final static Logger log=Logger.getLogger(logName);
 
     /**
-     * 初始化
+     * 初始化，主要是关于log
      */
     public static void init()  {
         if(initiated)

@@ -26,14 +26,14 @@ public class jsonParser implements parser {
     public boolean parse(String inPath,String outPath) {
 
         JSONObject jsonObject=null;
-
+        //打开源文件
         if(!new File(inPath).isFile()) {
             globalSetting.log.warning("Can not open file: " + inPath);
             return false;
         }
         else
             globalSetting.log.info("Open file Successfully:"+inPath);
-
+        //进行语法分析
         try {
             jsonObject = new rowJsonParser().parse(inPath);
         } catch ( IOException e) {
@@ -42,10 +42,10 @@ public class jsonParser implements parser {
         if(jsonObject==null){
             return false;
         }
-
+        //补充式检错
         if(checkError(jsonObject))
             return false;
-
+        //将结果写入输出文件
         BufferedWriter writer= null;
         try {
             writer = new BufferedWriter( new FileWriter( outPath));
@@ -72,6 +72,7 @@ public class jsonParser implements parser {
                 continue;
             else {
                 JSONArray jsonArray=jsonObject.getJSONArray(key);
+                //调用各函数的检错方法进行检错
                 for(int i=0;i<jsonArray.length();i++){
                     JSONObject json = (JSONObject)jsonArray.get(i);
                     if(registry.func.get(json.getString(registry.function)).hasErrorByJson(json,jsonObject)){

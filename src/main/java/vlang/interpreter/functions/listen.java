@@ -42,7 +42,7 @@ public class listen extends function {
     /**
      * 输入识别到的结果（来自自然语言处理的结果）对应的（散列到）跳转到的步骤名。
      */
-    HashMap<String,String> toRecongnize=new HashMap<>();
+    HashMap<String,String> targets=new HashMap<>();
 
     /**
      * @return 跳转到的步骤 或 输入失败 或 自然语言分析失败
@@ -50,18 +50,18 @@ public class listen extends function {
      */
     @Override
     public String exe(globalInfo globalInfo) {
-
-
-        String toGo= globalInfo.getIn().gets(silenceLimit*1000,toRecongnize.keySet()).getInfo();
+        //获取输入并进行自然语言处理
+        String toGo= globalInfo.getIn().gets(silenceLimit*1000,targets.keySet()).getInfo();
         globalSetting.log.info("listen:"+toGo);
-        if(toGo==registry.listenFailure)
+        //根据自然语言处理的结果返回不同意义的值
+        if(toGo==registry.listenFailure)//输入失败
             return registry.listenFailure;
-        else if(toRecongnize.containsKey(toGo))
-            return toRecongnize.get(toGo);
-        else if(!toRecongnize.containsKey(toGo)&& toRecongnize.containsKey(registry.listenDefault))
-            return toRecongnize.get(registry.listenDefault);
+        else if(targets.containsKey(toGo))//分析结果是预期的结果之一
+            return targets.get(toGo);
+        else if(!targets.containsKey(toGo)&& targets.containsKey(registry.listenDefault))//默认结果
+            return targets.get(registry.listenDefault);
         else
-            return registry.nlpFailure;
+            return registry.nlpFailure;//自然语言分析失败
     }
 
     /**
@@ -72,7 +72,7 @@ public class listen extends function {
         listen func=new listen();
         func.silenceLimit=jsonObject.getInt(registry.silenceLimt);
         for(String str: jsonObject.getJSONObject(registry.goTo).keySet()){
-            func.toRecongnize.put(str,jsonObject.getJSONObject(registry.goTo).getString(str));
+            func.targets.put(str,jsonObject.getJSONObject(registry.goTo).getString(str));
         }
         return func;
     }
@@ -86,12 +86,12 @@ public class listen extends function {
         jsonObject.put(registry.goTo,new JSONObject());
         int t= Math.max(input.size(), 2);
         word w = new word("@unkown");
-        boolean repeat=true;
+        boolean repeat=true;//当发现错误时置为false否则为true
         for( index = 0;index<t&&repeat;index++){
             if(index<input.size())
                 w= new word(input.get(index));
             switch (index){
-                case 0:
+                case 0://第一个参数，应该是输入的最长沉默时间silenceTime
                     if(index>=input.size()){
                         globalSetting.log.warning("expected num but got nothing");
                         repeat=false;
@@ -104,7 +104,7 @@ public class listen extends function {
                     }
                     jsonObject.put(registry.silenceLimt,Integer.parseInt(w.getInfo()));
                     break;
-                default:
+                default://期望是Branch/Silence/Default
                     if(w.getType()!=word.Type.branch){
                         globalSetting.log.warning("expected 'branch' but got "+w.getInfo());
                         repeat=false;
@@ -131,7 +131,7 @@ public class listen extends function {
     private boolean gotBranch(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
         word w=new word(input.get(index));
-        switch (w.getInfo()){
+        switch (w.getInfo()){//分为Silence、Default分支和Branch分支两类处理。
             case silence :case defaults:
                 ok=manageSilenceDefault(jsonObject,input);
                 break;
@@ -154,16 +154,18 @@ public class listen extends function {
      */
     private boolean manageSilenceDefault(JSONObject jsonObject,ArrayList<String>input){
         boolean ok=false;
-        if(jsonObject.has(input.get(index))) {
+        if(jsonObject.has(input.get(index))) {//该Listen函数已经有此自然语言处理结果对应的转移分支
             globalSetting.log.warning("The Listen Already has a Step id " + jsonObject.get(input.get(index)) + " for " + input.get(index));
             return ok;
         }
+        //设置该转移分支的自然语言处理结果
         word w = new word(input.get(index));
         if(silence.equals(w.getInfo()))
             w.setInfo(registry.listenSilence);
         if(defaults.equals(w.getInfo()))
             w.setInfo(registry.listenDefault);
         index++;
+        //设置该转移分支的转移到的下一个步骤
         if(index>=input.size())
             globalSetting.log.warning("expected a Step Id but got nothing");
         else if(new word(input.get(index)).getType()!=word.Type.id)
@@ -190,7 +192,7 @@ public class listen extends function {
         else if(jsonObject.has(input.get(index)))
             globalSetting.log.warning("The Listen Already has a Step id " + jsonObject.get(input.get(index)) + " for " + input.get(index));
         else
-            ok=manageSilenceDefault(jsonObject, input);
+            ok=manageSilenceDefault(jsonObject, input);//处理完Branch后Branch分支的处理和Silence/Default处理方法相同，这里重用代码
         return ok;
     }
 
@@ -203,7 +205,7 @@ public class listen extends function {
         boolean hasError=false;
         for(String str: func.getJSONObject(registry.goTo).keySet()){
             String id= func.getJSONObject(registry.goTo).getString(str);
-            if(!executor.has(id)){
+            if(!executor.has(id)){//当转移分支转移到的步骤（Step）在源文件中未声明
                 globalSetting.log.warning("Error : "+" unknown step "+id+" on listen function detected.\n");
                 hasError=true;
             }

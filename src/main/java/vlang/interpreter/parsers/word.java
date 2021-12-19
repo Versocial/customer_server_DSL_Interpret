@@ -43,6 +43,7 @@ public class word {
     public word(String info){
         this.info=info;
         this.type=Type.unknowns;
+        //判断word应有的类型
         for(String pattern:patterns.keySet()){
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(info);
@@ -50,8 +51,10 @@ public class word {
                 this.type=patterns.get(pattern);
             }
         }
+        //字符串去掉收尾引号
         if(type==Type.string)
             this.info=info.substring(1,info.length()-1);
+        //变量去掉开头的‘$’
         if(type==Type.var)
             this.info=info.substring(1,info.length());
     }

@@ -39,7 +39,7 @@ public class step {
      * @return 返回下一个应该执行的步骤名。
      */
     public String exe(globalInfo globalInfo){
-            String stepTogo =registry.goOn;
+            String stepTogo =registry.goOn;//goOn表示继续执行当前步骤，否则表示结束当前步骤并退出或跳转到其他步骤。
             for(int i=0;i<functions.size();i++){
                 stepTogo =functions.get(i).exe(globalInfo);
                 if(stepTogo !=registry.goOn)
