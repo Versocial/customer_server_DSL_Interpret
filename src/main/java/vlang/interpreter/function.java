@@ -4,13 +4,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * 函数类，其实例为{@link Step}的一个步骤。
+ * 函数类，其实例为{@link step}的一个步骤。
  */
 public abstract class function {
     /**
      * 执行
      * @param globalInfo 全局信息，例如用户的个人信息等。
-     * @return 返回的字符串表示下一个进行的步骤 {@link Step}或表示继续进行当前步骤。
+     * @return 返回的字符串表示下一个进行的步骤 {@link step}或表示继续进行当前步骤。
      */
     public abstract String exe(globalInfo globalInfo);
 
@@ -40,7 +40,7 @@ public abstract class function {
     public abstract boolean hasErrorByJson(JSONObject func, JSONObject executor);
 
     /**
-     * 该函数是否可能作为一个步骤{@link Step}的最后一个函数。
+     * 该函数是否可能作为一个步骤{@link step}的最后一个函数。
      * @return 若可能返回true，否则返回false。
      */
     public abstract boolean canBeEndFunction();

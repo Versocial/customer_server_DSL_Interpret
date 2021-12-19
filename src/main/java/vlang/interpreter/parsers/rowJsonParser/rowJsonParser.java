@@ -6,6 +6,9 @@ import java.io.*;
 import vlang.interpreter.registry;
 import vlang.interpreter.parser;
 
+/**
+*
+*/
 public class rowJsonParser implements rowJsonParserConstants {
     private  static int errorNum=0;
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
@@ -29,7 +32,7 @@ public class rowJsonParser implements rowJsonParserConstants {
             jsonObject=null;
         }
         else
-            globalSetting.log.warning("Parse Success.");
+            globalSetting.log.warning("Row Parse Success.");
         return jsonObject;
     }
 
@@ -80,6 +83,8 @@ public class rowJsonParser implements rowJsonParserConstants {
     Token Func = null;
     JSONArray ans=new JSONArray();
     JSONObject son=new JSONObject();
+    boolean canEnd=false;
+    boolean canGoOn=true;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ENTRY:
       jj_consume_token(ENTRY);
@@ -101,9 +106,18 @@ public class rowJsonParser implements rowJsonParserConstants {
       }
       Func = jj_consume_token(FUNCTION);
       son = rFunc(Func.image);
+        if(canGoOn==false){
+            globalSetting.log.warning("Unexpected another Function "+Func.image+" while step should finished.");
+            errorNum++;
+        }
         ans.put(son);
+        canEnd= registry.func.get(Func.image).buildByJson(son).canBeEndFunction();
     }
-     {if (true) return ans;}
+    if(canEnd==false){
+        globalSetting.log.warning("Expected another Function while the step shouldn't finished just after function: "+Func.image);
+                    errorNum++;
+        }
+    {if (true) return ans;}
     throw new Error("Missing return statement in function");
   }
 
@@ -117,6 +131,7 @@ public class rowJsonParser implements rowJsonParserConstants {
       case NUMBER:
       case IDENTIFIER:
       case STRING:
+      case VAR:
         ;
         break;
       default:
@@ -132,6 +147,9 @@ public class rowJsonParser implements rowJsonParserConstants {
         break;
       case IDENTIFIER:
         now = jj_consume_token(IDENTIFIER);
+        break;
+      case VAR:
+        now = jj_consume_token(VAR);
         break;
       default:
         jj_la1[4] = jj_gen;
@@ -161,7 +179,7 @@ public class rowJsonParser implements rowJsonParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x80,0x100,0x200,0x1c00,0x1c00,};
+      jj_la1_0 = new int[] {0x80,0x100,0x200,0x3c00,0x3c00,};
    }
 
   /** Constructor with InputStream. */
@@ -299,7 +317,7 @@ public class rowJsonParser implements rowJsonParserConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[13];
+    boolean[] la1tokens = new boolean[14];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -313,7 +331,7 @@ public class rowJsonParser implements rowJsonParserConstants {
         }
       }
     }
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i < 14; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

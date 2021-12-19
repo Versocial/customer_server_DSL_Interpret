@@ -22,6 +22,8 @@ public interface rowJsonParserConstants {
   int IDENTIFIER = 11;
   /** RegularExpression Id. */
   int STRING = 12;
+  /** RegularExpression Id. */
+  int VAR = 13;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -41,6 +43,7 @@ public interface rowJsonParserConstants {
     "<NUMBER>",
     "<IDENTIFIER>",
     "<STRING>",
+    "<VAR>",
   };
 
 }

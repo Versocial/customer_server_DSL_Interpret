@@ -36,9 +36,9 @@ public class input {
      * @param targets   需要NLP判断来自media的输入是targets中的哪个结果
      * @return  NLP根据targets分析来自media的输入后得到的结果：NLP分析结果应该是targets中的一个元素或其他特殊结果：如输入失败、输入为silence等。
      */
-    public analyzedInput gets(int listenTime, Set<String> targets) {
+    public analyzedInput gets(long listenTime, Set<String> targets) {
         analyzedInput ans=new analyzedInput(registry.listenDefault);
-        ans= NLProcessor.analyzeResult(media.gets(5),targets);
+        ans= NLProcessor.analyzeResult(media.gets(listenTime),targets);
         return ans;
     }
 

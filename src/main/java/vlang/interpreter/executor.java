@@ -7,27 +7,21 @@ import java.util.HashMap;
 /**
  * vlang执行器
  */
-public class executor implements Runnable {
+public class executor{
     /**
      * 待执行的步骤。
      */
-    private HashMap<String,Step> steps=new HashMap<>();
+    private HashMap<String, step> steps=new HashMap<>();
     /**
      * 入口步骤，即执行器开始执行的第一个步骤。
      */
     private String entryStep=registry.exit;
-    /**
-     * 全局信息，例如用户的个人信息（id、账单、姓名等），当天的时间等。
-     */
-    private globalInfo globalInfo =null;
 
 
     /**
      * 构造函数
-     * @param globalInfo 全局信息，例如用户的个人信息，当天的时间等。
      */
-    public executor(globalInfo globalInfo){
-        this.globalInfo =globalInfo;
+    public executor(){
     }
 
     /**
@@ -40,16 +34,22 @@ public class executor implements Runnable {
 
     /**
      * 执行器的执行方法。
+     * @param globalInfo 全局信息，例如用户的个人信息（id、账单、姓名等），当天的时间等。
      */
-    @Override
-    public void run() {
-        String stepTogo=entryStep;
-        while (stepTogo!=registry.exit){
-            if(!steps.containsKey(stepTogo)){
-                globalSetting.log.info("exit when unknown step: "+stepTogo);
-                break;
+    public Runnable runner(globalInfo globalInfo) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                String stepTogo=entryStep;
+                while (stepTogo!=registry.exit){
+                    if(!steps.containsKey(stepTogo)){
+                        globalSetting.log.warning("exit when unknown step: "+stepTogo);
+                        break;
+                    }
+                    globalSetting.log.info("enter step: "+stepTogo);
+                    stepTogo=steps.get(stepTogo).exe(globalInfo);
+                };
             }
-            stepTogo=steps.get(stepTogo).exe();
         };
     }
 
@@ -57,7 +57,7 @@ public class executor implements Runnable {
      * 添加待执行的步骤。
      * @param step 待添加的步骤。
      */
-    public void addStep(Step step) {
+    public void addStep(step step) {
         steps.put(step.name(),step);
     }
 }

@@ -52,7 +52,7 @@ public class listen extends function {
     public String exe(globalInfo globalInfo) {
 
 
-        String toGo= globalInfo.getIn().gets(silenceLimit,toRecongnize.keySet()).getInfo();
+        String toGo= globalInfo.getIn().gets(silenceLimit*1000,toRecongnize.keySet()).getInfo();
         globalSetting.log.info("listen:"+toGo);
         if(toGo==registry.listenFailure)
             return registry.listenFailure;

@@ -33,8 +33,7 @@ public class exeFactoryByJson implements executorFactory {
             e.printStackTrace();
         }
         globalSetting.log.info("starting interpreter by "+path+"..");
-        globalInfo info=new globalInfo();
-        executor newExecutor=new executor(info);
+        executor newExecutor=new executor();
 
         String str="";
         while (scanner.hasNextLine())
@@ -45,7 +44,7 @@ public class exeFactoryByJson implements executorFactory {
             if(key.equals(registry.entry))
                 newExecutor.setEntryStep(jsonObject.getString(key));
             else {
-                Step step=new Step(key,info);
+                step step=new step(key);
                 JSONArray jsonArray=jsonObject.getJSONArray(key);
                 for(int i=0;i<jsonArray.length();i++){
                     JSONObject json = (JSONObject)jsonArray.get(i);

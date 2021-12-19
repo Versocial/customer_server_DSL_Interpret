@@ -23,13 +23,13 @@ public class jsonParser implements parser {
      * @param outPath 输出的可被执行器执行的脚本路径
      */
     @Override
-    public void parse(String inPath,String outPath) {
+    public boolean parse(String inPath,String outPath) {
 
         JSONObject jsonObject=null;
 
         if(!new File(inPath).isFile()) {
             globalSetting.log.warning("Can not open file: " + inPath);
-            return;
+            return false;
         }
         else
             globalSetting.log.info("Open file Successfully:"+inPath);
@@ -40,11 +40,11 @@ public class jsonParser implements parser {
             e.printStackTrace();
         }
         if(jsonObject==null){
-            return;
+            return false;
         }
 
         if(checkError(jsonObject))
-            return;
+            return false;
 
         BufferedWriter writer= null;
         try {
@@ -54,7 +54,9 @@ public class jsonParser implements parser {
         } catch (IOException e) {
             e.printStackTrace();
             globalSetting.log.warning("Can not write file: " + outPath);
+            return false;
         }
+        return true;
 
     }
 
@@ -79,7 +81,8 @@ public class jsonParser implements parser {
                 }
             }
         }
-        globalSetting.log.warning("Parse Fail while check : "+errorNum+" errors detected.");
+        if(errorNum>0)
+            globalSetting.log.warning("Parse Fail while check : "+errorNum+" errors detected.");
         return errorNum>0;
     }
 

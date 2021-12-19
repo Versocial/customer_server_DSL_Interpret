@@ -13,17 +13,18 @@ public class word {
      * word的类型
      */
     public enum Type{
-        id,num, string, unknowns,branch
+        id,num, string, unknowns,branch, var
     }
 
     /**
      * word的类型对应的正则表达式
      */
     private static final HashMap<String,Type> patterns=new HashMap<>(){{
-        put("[0-9]+",Type.num);
-        put("[A-Za-z]+",Type.id);
-        put("\"[\u4E00-\u9FA5^\"\\w\\d!?.,$]*\"",Type.string);
-        put("Silence|Branch|Default",Type.branch);
+        put("^[0-9]+$",Type.num);
+        put("^\\$[A-Za-z]+$",Type.var);
+        put("^[A-Za-z]+$",Type.id);
+        put("^\"[A-Za-z0-9\\s\u4E00-\u9FA5!?.,]*\"$",Type.string);
+        put("^Silence$|^Branch$|^Default$",Type.branch);
     }};
 
     /**
@@ -51,6 +52,8 @@ public class word {
         }
         if(type==Type.string)
             this.info=info.substring(1,info.length()-1);
+        if(type==Type.var)
+            this.info=info.substring(1,info.length());
     }
 
     /**

@@ -15,5 +15,5 @@ public interface inputMedia<rowInputClass extends rowInput> {
      * @param silenceTime 当媒体经过连续silenceTime 毫秒 时间没有输入时输入结束
      * @return  返回获取的原始输入。
      */
-    public rowInputClass gets(int silenceTime);
+    public rowInputClass gets(long silenceTime);
 }

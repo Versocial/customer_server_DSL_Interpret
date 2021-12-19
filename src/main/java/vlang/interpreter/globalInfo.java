@@ -25,23 +25,15 @@ public class globalInfo {
     output out;
 
     /**
-     * 构造函数，配置时默认用{@link globalSetting}中的输入输出媒体和自然语言处理模块
+     * 构造函数，配置时默认用{@link globalSetting}中的输入输出媒体和自然语言处理模块.
      */
     public globalInfo(){
-        clientInfo= new clientInfo();
+        clientInfo= new clientInfo(123456);
         in = new input(globalSetting.NLprocessor,globalSetting.inMedia);
         out =new output(globalSetting.outMedia);
     }
 
-    /**
-     * 用户信息
-     */
-    static class clientInfo {
-        String ID;
-        String name;
-        String bill;
-        String birth;
-    }
+
 
     /**
      * 输出
@@ -57,5 +49,13 @@ public class globalInfo {
      */
     public input getIn() {
         return in;
+    }
+
+    /**
+     * 用户信息
+     * @return 用户信息，该类的成员clientInfo
+     */
+    public clientInfo clientInfo(){
+        return clientInfo;
     }
 }

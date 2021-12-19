@@ -2,9 +2,11 @@ package vlang.io.easyIo;
 
 import vlang.io.media.inputMedia;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,55 +18,62 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
     /**
      *
      */
-    private String ans = "";
     private Semaphore timeOut=new Semaphore(0);
     private long latestTime=0;
     private Lock lockLatestTime=new ReentrantLock();
-    private BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
+    private JFrame frame = new JFrame("Waiting for your input...");
+    JTextField userText = new JTextField(100);
+    JPanel panel = new JPanel();
+
+    protected class insertListener implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            lockLatestTime.lock();
+            latestTime=System.currentTimeMillis();
+            lockLatestTime.unlock();
+            System.out.println("shit");
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+        }
+    }
+    public easyInputMedia(){
+        frame.setSize(1000, 100);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(panel);
+        panel.setLayout(null);
+        userText.setBounds(100,20,800,25);
+        panel.add(userText);
+        userText.setVisible(true);
+        Document document=new PlainDocument();
+        document.addDocumentListener(new insertListener());
+        userText.setDocument(document);
+
+    }
 
     @Override
-    public easyRowInput gets(int silenceTime) {
+    public easyRowInput gets(long silenceTime) {//silenceTime milisecond
         latestTime=System.currentTimeMillis();
 
-        Thread readIn= new Thread(()->{
-            try {
-                while (true) {
-                    String append=bufferedReader.readLine();
-                    if(Thread.interrupted())
-                        break;
-                    lockLatestTime.lock();
-                    ans+=append;
-                    latestTime = System.currentTimeMillis();
-                    lockLatestTime.unlock();
-                }
-            }catch (IOException e){
-                System.out.println("io stopped.");
-                return;
-            }
-            System.out.println("io interrupted.");
-        });
-        new Thread(new clock(silenceTime * 1000L)).start();
+        frame.setVisible(true);
 
-        readIn.start();
-        int a=0;
+        new Thread(new clock(silenceTime )).start();
+
         try {
             timeOut.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        readIn.interrupt();
-        String ansInput;
-        lockLatestTime.lock();
-            System.out.println("ans="+ans);
-        try {
-            System.in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ansInput=ans;
-        lockLatestTime.unlock();
-        return new easyRowInput(ansInput);
+        String ans=userText.getText();
+        System.out.println(ans);
+        userText.setText("");
+        frame.setVisible(false);
+        return new easyRowInput(ans);
     }
 
 
@@ -87,10 +96,9 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
                 }
 
                 boolean isTimeOut=false;
-                long timeNow=System.currentTimeMillis();
-
                 lockLatestTime.lock();
-                if(timeNow-latestTime>=silenceTime-10)
+                long timeNow=System.currentTimeMillis();
+                if(timeNow-latestTime>=silenceTime)
                     isTimeOut=true;
                 else
                     sleepTime=silenceTime-(timeNow-latestTime);
@@ -103,4 +111,6 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
             }
         }
     }
+
+
 }

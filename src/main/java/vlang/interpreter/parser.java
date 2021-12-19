@@ -9,6 +9,6 @@ public interface parser {
      * @param inPath 输入的源文件路径
      * @param outPath 输出的可被执行器执行的脚本路径
      */
-    public void parse(String inPath,String outPath) ;
+    public boolean parse(String inPath,String outPath) ;
 
 }

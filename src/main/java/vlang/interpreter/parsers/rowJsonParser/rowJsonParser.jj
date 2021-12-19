@@ -7,6 +7,9 @@ import java.io.*;
 import vlang.interpreter.registry;
 import vlang.interpreter.parser;
 
+/**
+*
+*/
 public class rowJsonParser{
     private  static int errorNum=0;
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
@@ -56,6 +59,7 @@ TOKEN:{
     |<NUMBER:(["0"-"9"])+>
     |<IDENTIFIER: (["a"-"z", "A"-"Z"])+>
     |<STRING: "\"" (~["\""]|["\u4E00"-"\u9FA5"])* "\"">
+    |<VAR: "$" (["a"-"z", "A"-"Z"])+>
 }
 
 JSONObject start() throws NumberFormatException:
@@ -130,7 +134,7 @@ JSONArray rStep():
     )*
     {
     if(canEnd==false){
-        globalSetting.log.warning("Expected another Function while the step shouldn't finished.");
+        globalSetting.log.warning("Expected another Function while the step shouldn't finished just after function: "+Func.image);
                     errorNum++;
         }
     return ans;
@@ -145,7 +149,7 @@ JSONObject rFunc(String func):
 }
 {
          (
-         ((now=<NUMBER>)|(now=<STRING>)|(now=<IDENTIFIER>))
+         ((now=<NUMBER>)|(now=<STRING>)|(now=<IDENTIFIER>)|(now=<VAR>))
          {tokens.add(now.image);
             }
 

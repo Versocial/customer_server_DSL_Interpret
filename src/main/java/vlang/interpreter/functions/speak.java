@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import vlang.globalSetting;
 import vlang.interpreter.function;
 import vlang.interpreter.globalInfo;
+import vlang.interpreter.parsers.word;
 import vlang.interpreter.registry;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class speak extends function {
     /**
      * 待输出的字符串序列
      */
-    private  ArrayList<String> toSpeak=new ArrayList<>();
+    private  ArrayList<word> toSpeak=new ArrayList<>();
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。
@@ -29,7 +30,10 @@ public class speak extends function {
     @Override
     public String exe(globalInfo globalInfo) {
         globalSetting.log.info("speak");
-        for( String str : toSpeak) {
+        for( word w : toSpeak) {
+            String str=w.getInfo();
+            if(w.getType()== word.Type.var)
+                str=globalInfo.clientInfo().get(w.getInfo());
             globalInfo.getOut().puts(str);
         }
         return registry.goOn;
@@ -42,7 +46,8 @@ public class speak extends function {
     public function buildByJson(JSONObject jsonObject) {
         speak func=new speak();
         for(int i=0;i<jsonObject.getJSONArray(registry.param).length();i++){
-            func.toSpeak.add(jsonObject.getJSONArray(registry.param).getString(i));
+            String toAdd=jsonObject.getJSONArray(registry.param).getString(i);
+            func.toSpeak.add(new word(toAdd));
         }
         return func;
     }
