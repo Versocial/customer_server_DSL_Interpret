@@ -46,7 +46,7 @@ public class jsonParser implements parser {
         if(checkError(jsonObject))
             return false;
         //将结果写入输出文件
-        BufferedWriter writer= null;
+        BufferedWriter writer;
         try {
             writer = new BufferedWriter( new FileWriter( outPath));
             writer.write( jsonObject.toString());
@@ -68,9 +68,7 @@ public class jsonParser implements parser {
     boolean checkError(JSONObject jsonObject){
         int errorNum=0;
         for(String key :jsonObject.keySet()){
-            if(key.equals(registry.entry))
-                continue;
-            else {
+            if(!key.equals(registry.entry)){
                 JSONArray jsonArray=jsonObject.getJSONArray(key);
                 //调用各函数的检错方法进行检错
                 for(int i=0;i<jsonArray.length();i++){

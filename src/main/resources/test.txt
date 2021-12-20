@@ -1,5 +1,5 @@
 Step welcome @entry
-Speak $name  " 您好请问有什么可以帮您?"
+Speak $name  " Hello, 您好请问有什么可以帮您?"
 Listen 10
 Branch "投诉" complainProc
 Branch "账单" billProc

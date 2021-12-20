@@ -21,7 +21,7 @@ public class speak extends function {
     /**
      * 待输出的字符串序列
      */
-    private  ArrayList<word> toSpeak=new ArrayList<>();
+    private final ArrayList<word> toSpeak=new ArrayList<>();
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。
@@ -30,14 +30,14 @@ public class speak extends function {
     @Override
     public String exe(globalInfo globalInfo) {
         globalSetting.log.info("speak");
-        String ans="";
+        StringBuilder ans= new StringBuilder();
         for( word w : toSpeak) {
             String str=w.getInfo();
             if(w.getType()== word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
                 str=globalInfo.clientInfo().get(w.getInfo());
-            ans+=str;
+            ans.append(str);
         }
-        globalInfo.getOut().puts(ans);
+        globalInfo.getOut().puts(ans.toString());
         return registry.goOn;
     }
 
@@ -61,8 +61,8 @@ public class speak extends function {
     public JSONObject buildJson(ArrayList<String> input) {
         JSONObject jsonObject=new JSONObject();
         JSONArray jsonArray=new JSONArray();
-        for(int i=0;i<input.size();i++)
-            jsonArray.put(input.get(i));
+        for (String s : input)
+            jsonArray.put(s);
         jsonObject.put(registry.param,jsonArray);
         return jsonObject;
     }

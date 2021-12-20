@@ -36,10 +36,13 @@ public class exeFactoryByJson implements executorFactory {
         globalSetting.log.info("starting interpreter by "+path+"..");
         executor newExecutor=new executor();
         //读出脚本中所有内容并转为JSONObject格式
-        String str="";
-        while (scanner.hasNextLine())
-            str+=scanner.nextLine();
-        JSONObject jsonObject=new JSONObject(str);
+        StringBuilder str= new StringBuilder();
+        while (true) {
+            assert scanner != null;
+            if (!scanner.hasNextLine()) break;
+            str.append(scanner.nextLine());
+        }
+        JSONObject jsonObject=new JSONObject(str.toString());
 
         for(String key :jsonObject.keySet()){
             if(key.equals(registry.entry))//设置入口步骤（Step）

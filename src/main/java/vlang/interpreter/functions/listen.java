@@ -9,6 +9,7 @@ import vlang.interpreter.registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * 从输入读取函数
@@ -51,10 +52,10 @@ public class listen extends function {
     @Override
     public String exe(globalInfo globalInfo) {
         //获取输入并进行自然语言处理
-        String toGo= globalInfo.getIn().gets(silenceLimit*1000,targets.keySet()).getInfo();
+        String toGo= globalInfo.getIn().gets(silenceLimit* 1000L,targets.keySet()).getInfo();
         globalSetting.log.info("listen:"+toGo);
         //根据自然语言处理的结果返回不同意义的值
-        if(toGo==registry.listenFailure)//输入失败
+        if(Objects.equals(toGo, registry.listenFailure))//输入失败
             return registry.listenFailure;
         else if(targets.containsKey(toGo))//分析结果是预期的结果之一
             return targets.get(toGo);
@@ -90,32 +91,30 @@ public class listen extends function {
         for( index = 0;index<t&&repeat;index++){
             if(index<input.size())
                 w= new word(input.get(index));
-            switch (index){
-                case 0://第一个参数，应该是输入的最长沉默时间silenceTime
-                    if(index>=input.size()){
-                        globalSetting.log.warning("expected num but got nothing");
-                        repeat=false;
-                        break;
-                    }
-                    if(w.getType()!=word.Type.num){
-                        globalSetting.log.warning("expected num but got "+w.getInfo());
-                        repeat=false;
-                        break;
-                    }
-                    jsonObject.put(registry.silenceLimt,Integer.parseInt(w.getInfo()));
-                    break;
-                default://期望是Branch/Silence/Default
-                    if(w.getType()!=word.Type.branch){
-                        globalSetting.log.warning("expected 'branch' but got "+w.getInfo());
-                        repeat=false;
-                        break;
-                    }
-                    repeat=gotBranch(jsonObject,input);
-                    break;
+
+            if (index == 0) { //第一个参数，期望是输入的最长沉默时间silenceTime
+                if (index >= input.size()) {
+                    globalSetting.log.warning("expected num but got nothing");
+                    repeat = false;
+                    continue;
+                }
+                if (w.getType() != word.Type.num) {
+                    globalSetting.log.warning("expected num but got " + w.getInfo());
+                    repeat = false;
+                    continue;
+                }
+                jsonObject.put(registry.silenceLimt, Integer.parseInt(w.getInfo()));
+            } else { //期望是Branch/Silence/Default
+                if (w.getType() != word.Type.branch) {
+                    globalSetting.log.warning("expected 'branch' but got " + w.getInfo());
+                    repeat = false;
+                    continue;
+                }
+                repeat = gotBranch(jsonObject, input);
             }
 
         }
-        if(repeat==false)
+        if(!repeat)
             globalSetting.log.warning("Parser failed on Listen function.");
         return jsonObject;
     }
@@ -129,19 +128,15 @@ public class listen extends function {
      * @return 返回转化是否成功，成功则返回true，否则返回false
      */
     private boolean gotBranch(JSONObject jsonObject,ArrayList<String>input){
-        boolean ok=false;
+        boolean ok;
         word w=new word(input.get(index));
-        switch (w.getInfo()){//分为Silence、Default分支和Branch分支两类处理。
-            case silence :case defaults:
-                ok=manageSilenceDefault(jsonObject,input);
-                break;
-            case branch:
-                ok=manageBranch(jsonObject, input);
-                break;
-            default:
-                globalSetting.log.warning("expected 'branch' but got "+w.getInfo());
-                ok=false;
-                break;
+        switch (w.getInfo()) {//分为Silence、Default分支和Branch分支两类处理。
+            case silence, defaults -> ok = manageSilenceDefault(jsonObject, input);
+            case branch -> ok = manageBranch(jsonObject, input);
+            default -> {
+                globalSetting.log.warning("expected 'branch' but got " + w.getInfo());
+                ok = false;
+            }
         }
         return ok;
     }

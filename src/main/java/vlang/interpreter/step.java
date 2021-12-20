@@ -1,6 +1,7 @@
 package vlang.interpreter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * 该类是执行器{@link executor}的步骤类：
@@ -10,11 +11,11 @@ public class step {
     /**
      * name字段是步骤类的名称，也是区分不同步骤的唯一标识。
      */
-    private   String name;
+    private final String name;
     /**
      * functions字段是该步骤中待顺序执行的各个字段。
      */
-    private ArrayList<function> functions=new ArrayList<>();
+    private final ArrayList<function> functions=new ArrayList<>();
 
 
         /**
@@ -40,11 +41,11 @@ public class step {
      */
     public String exe(globalInfo globalInfo){
             String stepTogo =registry.goOn;//goOn表示继续执行当前步骤，否则表示结束当前步骤并退出或跳转到其他步骤。
-            for(int i=0;i<functions.size();i++){
-                stepTogo =functions.get(i).exe(globalInfo);
-                if(stepTogo !=registry.goOn)
-                    break;
-            }
+        for (vlang.interpreter.function function : functions) {
+            stepTogo = function.exe(globalInfo);
+            if (!Objects.equals(stepTogo, registry.goOn))
+                break;
+        }
             return stepTogo;
         }
 

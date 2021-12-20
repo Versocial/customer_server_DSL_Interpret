@@ -62,10 +62,11 @@ public abstract class globalSetting {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert fileHandler != null;
         fileHandler.setFormatter(new SimpleFormatter());
         log.addHandler(fileHandler);
         //log.addHandler(new ConsoleHandler());
-        log.setFilter((logRecord)->{return true;});
+        log.setFilter((logRecord)-> true);
         log.info(" log start..");
         initiated=true;
     }

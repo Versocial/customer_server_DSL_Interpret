@@ -4,7 +4,7 @@ import vlang.interpreter.executor;
 import vlang.interpreter.exefactorys.exeFactoryByJson;
 import vlang.interpreter.globalInfo;
 
-import java.io.*;
+import java.util.Objects;
 
 /**
  * 主函数
@@ -12,13 +12,11 @@ import java.io.*;
 public class Main {
     /**
      * 主函数
-     * @param args
-     * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         globalSetting.init();
         //语法分析，并生成json格式的中间脚本
-        boolean ok= globalSetting.parser.parse(Main.class.getClassLoader().getResource("./test.txt").getPath(),"src\\main\\resources\\out.json");
+        boolean ok= globalSetting.parser.parse(Objects.requireNonNull(Main.class.getClassLoader().getResource("./test.txt")).getPath(),"src\\main\\resources\\out.json");
         if(!ok)
             return;
         //执行

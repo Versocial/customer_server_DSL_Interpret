@@ -56,7 +56,7 @@ public class word {
             this.info=info.substring(1,info.length()-1);
         //变量去掉开头的‘$’
         if(type==Type.var)
-            this.info=info.substring(1,info.length());
+            this.info=info.substring(1);
     }
 
     /**

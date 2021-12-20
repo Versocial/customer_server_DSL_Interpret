@@ -4,9 +4,6 @@ package vlang.interpreter;
  */
 public class clientInfo {
         long ID;
-        String name;
-        String bill;
-        String birth;
 
     /**
      * 构造方法。如果连接数据库，这里可以使用clientID查询对应用户生成用户信息。
@@ -22,7 +19,6 @@ public class clientInfo {
      * @return 对应信息（如”张三）
      */
     public String get(String key){
-            String ans= "<'" +key+"' of user "+ID+">";
-            return ans;
+        return "<'" +key+"' of user "+ID+">";
         }
 }
