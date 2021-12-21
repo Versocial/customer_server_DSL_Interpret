@@ -1,6 +1,6 @@
 package vlang.io.easyIo;
 
-import vlang.io.media.inputMedia;
+import vlang.io.media.InputMedia;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -12,9 +12,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 简单的{@link inputMedia}的实现，从跳出的Jframe输入框读取，读取返回值为{@link easyRowInput}实例
+ * 简单的{@link InputMedia}的实现，从跳出的Jframe输入框读取，读取返回值为{@link EasyRowInput}实例
  */
-public class easyInputMedia implements inputMedia<easyRowInput> {
+public class EasyInputMedia implements InputMedia<EasyRowInput> {
     /**
      * 信号量：是否超时
      */
@@ -30,15 +30,15 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
     /**
      * 输入框
      */
-    private JFrame frame = new JFrame("Waiting for your input...");
+    private JFrame frame ;
     /**
      * 输入框上的文本框
      */
-    JTextField userText = new JTextField(100);
+    JTextField userText ;
     /**
      * 输入框部件
      */
-    JPanel panel = new JPanel();
+    JPanel panel;
 
     /**
      * 输入监听器，该类用于文本框在有输入时更新latestTime。
@@ -63,17 +63,7 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
     /**
      * 构造函数，主要是对文本输入框的设置，包括布局界面设置和添加输入监听器{@link insertListener}两个方面。
      */
-    public easyInputMedia(){
-        frame.setSize(1000, 100);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-        panel.setLayout(null);
-        userText.setBounds(100,20,800,25);
-        panel.add(userText);
-        userText.setVisible(true);
-        Document document=new PlainDocument();
-        document.addDocumentListener(new insertListener());
-        userText.setDocument(document);
+    public EasyInputMedia(){
 
     }
 
@@ -81,7 +71,7 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
      * @inheritDoc
      * */
     @Override
-    public easyRowInput gets(long silenceTime) {
+    public EasyRowInput gets(long silenceTime) {
         latestTime=System.currentTimeMillis();
         //设置JFrame可见
         frame.setVisible(true);
@@ -99,7 +89,32 @@ public class easyInputMedia implements inputMedia<easyRowInput> {
         userText.setText("");
         frame.setVisible(false);
         //返回获取的输入
-        return new easyRowInput(ans);
+        return new EasyRowInput(ans);
+    }
+
+    @Override
+    public void open() {
+        frame = new JFrame("Waiting for your input...");
+        frame.setSize(1000, 100);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        panel.setLayout(null);
+        frame.add(panel);
+        userText = new JTextField(100);
+        userText.setBounds(100,20,800,25);
+        panel.add(userText);
+        userText.setVisible(true);
+        Document document=new PlainDocument();
+        document.addDocumentListener(new insertListener());
+        userText.setDocument(document);
+    }
+
+    @Override
+    public void close() {
+            frame.dispose();
+            userText=null;
+            panel=null;
+            frame=null;
     }
 
 

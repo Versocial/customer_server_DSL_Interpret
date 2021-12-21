@@ -2,18 +2,18 @@ package vlang.interpreter.functions;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import vlang.globalSetting;
-import vlang.interpreter.function;
-import vlang.interpreter.globalInfo;
-import vlang.interpreter.parsers.word;
-import vlang.interpreter.registry;
+import vlang.GlobalSetting;
+import vlang.interpreter.Function;
+import vlang.interpreter.GlobalInfo;
+import vlang.interpreter.Registry;
+import vlang.interpreter.parsers.Word;
 
 import java.util.ArrayList;
 
 /**
  * 输出函数，向input输出指定的信息。
  */
-public class speak extends function {
+public class Speak extends Function {
     /**
      * 函数名{@value}
      */
@@ -21,35 +21,35 @@ public class speak extends function {
     /**
      * 待输出的字符串序列
      */
-    private final ArrayList<word> toSpeak=new ArrayList<>();
+    private final ArrayList<Word> toSpeak=new ArrayList<>();
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。
      * @inheritDoc
      */
     @Override
-    public String exe(globalInfo globalInfo) {
-        globalSetting.log.info("speak");
+    public String exe(GlobalInfo globalInfo) {
+        GlobalSetting.log.info("speak");
         StringBuilder ans= new StringBuilder();
-        for( word w : toSpeak) {
+        for( Word w : toSpeak) {
             String str=w.getInfo();
-            if(w.getType()== word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
+            if(w.getType()== Word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
                 str=globalInfo.clientInfo().get(w.getInfo());
             ans.append(str);
         }
         globalInfo.getOut().puts(ans.toString());
-        return registry.goOn;
+        return Registry.goOn;
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public function buildByJson(JSONObject jsonObject) {
-        speak func=new speak();
-        for(int i=0;i<jsonObject.getJSONArray(registry.param).length();i++){
-            String toAdd=jsonObject.getJSONArray(registry.param).getString(i);
-            func.toSpeak.add(new word(toAdd));
+    public Function buildByJson(JSONObject jsonObject) {
+        Speak func=new Speak();
+        for(int i = 0; i<jsonObject.getJSONArray(Registry.param).length(); i++){
+            String toAdd=jsonObject.getJSONArray(Registry.param).getString(i);
+            func.toSpeak.add(new Word(toAdd));
         }
         return func;
     }
@@ -63,7 +63,7 @@ public class speak extends function {
         JSONArray jsonArray=new JSONArray();
         for (String s : input)
             jsonArray.put(s);
-        jsonObject.put(registry.param,jsonArray);
+        jsonObject.put(Registry.param,jsonArray);
         return jsonObject;
     }
 

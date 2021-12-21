@@ -3,7 +3,7 @@ package vlang.interpreter;
 /**
  * 语法分析器，将vlang源文件转化为vlang执行器可执行的脚本。
  */
-public interface parser {
+public interface Parser {
     /**
      * 分析函数
      * @param inPath 输入的源文件路径

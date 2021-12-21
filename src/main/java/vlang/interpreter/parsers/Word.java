@@ -1,13 +1,15 @@
 package vlang.interpreter.parsers;
 
+import vlang.interpreter.Function;
+
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 提供给{@link vlang.interpreter.function} 的各种实现在由源文件构造JSONObject的buildByJson方法中将给到的字符串序列转化为word（token）序列的功能。
+ * 提供给{@link Function} 的各种实现在由源文件构造JSONObject的buildByJson方法中将给到的字符串序列转化为word（token）序列的功能。
  */
-public class word {
+public class Word {
 
     /**
      * word的类型
@@ -40,7 +42,7 @@ public class word {
      * 构造函数，由源文件中识别到的字符串构造word
      * @param info 该word在源文件中对应的字符串
      */
-    public word(String info){
+    public Word(String info){
         this.info=info;
         this.type=Type.unknowns;
         //判断word应有的类型

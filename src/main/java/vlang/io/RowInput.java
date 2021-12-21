@@ -1,9 +1,11 @@
 package vlang.io;
 
+import vlang.io.media.InputMedia;
+
 /**
- * 该接口是{@link vlang.io.media.inputMedia}获取的输入，是给 {@link vlang.io.nlp.NLP} 进行自然语言处理提供的原始输入。
+ * 该接口是{@link InputMedia}获取的输入，是给 {@link vlang.io.nlp.NLP} 进行自然语言处理提供的原始输入。
  */
-public interface rowInput {
+public interface RowInput {
     /**
      * 获取原始输入数据
      * @return 原始输入转化的字符串

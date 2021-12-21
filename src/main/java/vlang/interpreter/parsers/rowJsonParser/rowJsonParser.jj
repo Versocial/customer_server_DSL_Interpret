@@ -1,16 +1,19 @@
-PARSER_BEGIN(rowJsonParser)
+PARSER_BEGIN(RowJsonParser)
 
 package vlang.interpreter.parsers.rowJsonParser;
-import java.nio.charset.StandardCharsets;import java.util.ArrayList;
-import org.json.JSONArray;import org.json.JSONObject;import vlang.globalSetting;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import vlang.GlobalSetting;
 import java.io.*;
-import vlang.interpreter.registry;
-import vlang.interpreter.parser;
+import vlang.interpreter.Executor;import vlang.interpreter.Registry;
+import vlang.interpreter.Parser;
 
 /**
-* Parser.To convert the source file into an intermediate script that can be executed by the executor {@link vlang.interpreter.executor}.
+* Parser.To convert the source file into an intermediate script that can be executed by the executor {@link Executor}.
 */
-public class rowJsonParser{
+public class RowJsonParser{
     /**
     * error number
     */
@@ -20,35 +23,32 @@ public class rowJsonParser{
     */
     private static final JSONObject entrySymbol=new JSONObject("{\"#\":0}");
 
-    public rowJsonParser(){
-
-    }
     /**
     * parse
     * @param inPath path of the source file
     */
-    public  JSONObject parse(String inPath)throws IOException {
+    public static JSONObject parse(String inPath)throws IOException {
         errorNum=0;
-        globalSetting.init();
-        rowJsonParser parser= new rowJsonParser(new InputStreamReader(new FileInputStream(inPath),StandardCharsets.UTF_8));
+        GlobalSetting.init();
+        RowJsonParser parser= new RowJsonParser(new InputStreamReader(new FileInputStream(inPath),StandardCharsets.UTF_8));
         JSONObject jsonObject = null;
         try {
-             jsonObject = rowJsonParser.start();
+             jsonObject = RowJsonParser.start();
              } catch (ParseException e) {
                    e.printStackTrace();
                    }
         if(errorNum>0){
-            globalSetting.log.warning("Parse Fail : "+errorNum+" errors detected.");
+            GlobalSetting.log.warning("Parse Fail : "+errorNum+" errors detected.");
             jsonObject=null;
         }
         else
-            globalSetting.log.warning("Row Parse Success.");
+            GlobalSetting.log.warning("Row Parse Success.");
         return jsonObject;
     }
 
 }
 
-PARSER_END(rowJsonParser)
+PARSER_END(RowJsonParser)
 
 SKIP:{
     " "
@@ -84,27 +84,27 @@ JSONObject start() throws NumberFormatException:
             son= rStep()
             {
             if(ans.has(Step.image)){
-                globalSetting.log.warning("Step "+Step.image+" has already defined.\n");
+                GlobalSetting.log.warning("Step "+Step.image+" has already defined.\n");
                 errorNum++;
             }
 
             if(son.get(0).equals(entrySymbol)){
                 son.remove(0);
-                if(ans.has(registry.entry)){
-                globalSetting.log.warning("Entry has already defined as "+ans.getString(registry.entry)+" but "+Step.image);
+                if(ans.has(Registry.entry)){
+                GlobalSetting.log.warning("Entry has already defined as "+ans.getString(Registry.entry)+" but "+Step.image);
                 errorNum++;
                 }
                 else
-                   ans.put(registry.entry,Step.image);
+                   ans.put(Registry.entry,Step.image);
                 }
-            globalSetting.log.info("Finish parse Step "+Step.image);
+            GlobalSetting.log.info("Finish parse Step "+Step.image);
             ans.put(Step.image,son);
             }
             ) *
         <EOF>
     {
-    if(!ans.has(registry.entry)){
-                    globalSetting.log.warning("Entry is not defined");
+    if(!ans.has(Registry.entry)){
+                    GlobalSetting.log.warning("Entry is not defined");
                     errorNum++;
                 }
     return ans;
@@ -134,18 +134,18 @@ JSONArray rStep():
         son=rFunc(Func.image)
         {
         if(!canGoOn){
-            globalSetting.log.warning("Unexpected another Function "+Func.image+" while step should finished.");
+            GlobalSetting.log.warning("Unexpected another Function "+Func.image+" while step should finished.");
             errorNum++;
         }
         ans.put(son);
-        canGoOn=registry.func.get(Func.image).buildByJson(son).canBeNotEndFunction();
-        canEnd= registry.func.get(Func.image).buildByJson(son).canBeEndFunction();
+        canGoOn=Registry.func.get(Func.image).buildByJson(son).canBeNotEndFunction();
+        canEnd= Registry.func.get(Func.image).buildByJson(son).canBeEndFunction();
         }
 
     )*
     {
     if(!canEnd){
-        globalSetting.log.warning("Expected another Function while the step shouldn't finished just after function: "+Func.image);
+        GlobalSetting.log.warning("Expected another Function while the step shouldn't finished just after function: "+Func.image);
                     errorNum++;
         }
     return ans;
@@ -168,7 +168,7 @@ JSONObject rFunc(String func):
 
          )*
        {
-        ans=registry.func.get(func).buildJson(tokens).put(registry.function,func);
+        ans=Registry.func.get(func).buildJson(tokens).put(Registry.function,func);
         return ans;
         }
 

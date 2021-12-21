@@ -1,7 +1,7 @@
 package vlang.io.easyIo;
 
-import vlang.interpreter.registry;
-import vlang.io.analyzedInput;
+import vlang.interpreter.Registry;
+import vlang.io.AnalyzedInput;
 import vlang.io.nlp.NLP;
 
 import java.util.Set;
@@ -9,19 +9,19 @@ import java.util.Set;
 /**
  * 一个简单的NLP接口的实现。<br>用简单的逻辑代替复杂的自然语言处理过程。<br>用判断字符串中是否存在targets中某项为子串的方法。
  */
-public class easyNLP implements NLP<easyRowInput> {
+public class EasyNLP implements NLP<EasyRowInput> {
     /**
      * 这里用判断字符串中是否存在targets中某项为子串替代语法分析。
      * @inheritDoc
      */
     @Override
-    public analyzedInput analyzeResult(easyRowInput input, Set<String> targets) {
-        String ans=registry.listenDefault;
+    public AnalyzedInput analyzeResult(EasyRowInput input, Set<String> targets) {
+        String ans= Registry.listenDefault;
         if(input.getType()!="String")
-            ans= registry.listenFailure;
+            ans= Registry.listenFailure;
         else {
             if(input.getString().isBlank())
-                ans=registry.listenSilence;
+                ans= Registry.listenSilence;
             else {
                 for (String target : targets) {
                     if (input.getString().contains(target)) {
@@ -31,6 +31,16 @@ public class easyNLP implements NLP<easyRowInput> {
                 }
             }
         }
-          return new analyzedInput(ans);
+          return new AnalyzedInput(ans);
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void close() {
+
     }
 }

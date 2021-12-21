@@ -1,11 +1,11 @@
 package vlang.io.easyIo;
 
-import vlang.io.rowInput;
+import vlang.io.RowInput;
 
 /**
- * 该类是{@link rowInput}的一个简单实现类，类型固定为“String”的实现类。
+ * 该类是{@link RowInput}的一个简单实现类，类型固定为“String”的实现类。
  */
-public class easyRowInput implements rowInput {
+public class EasyRowInput implements RowInput {
     /**
      * 存储原始输入的字符串
      */
@@ -15,7 +15,7 @@ public class easyRowInput implements rowInput {
      * 构造函数
      * @param information 原始输入的字符串
      */
-    public easyRowInput(String information) {
+    public EasyRowInput(String information) {
         this.information = information;
     }
 

@@ -1,12 +1,15 @@
 package vlang;
 
-import vlang.interpreter.parser;
-import vlang.interpreter.parsers.jsonParser;
-import vlang.io.easyIo.easyInputMedia;
-import vlang.io.easyIo.easyNLP;
-import vlang.io.easyIo.easyOutputMedia;
-import vlang.io.media.inputMedia;
-import vlang.io.media.outputMedia;
+import vlang.interpreter.GlobalInfo;
+import vlang.interpreter.Parser;
+import vlang.interpreter.parsers.JsonParser;
+import vlang.io.Input;
+import vlang.io.Output;
+import vlang.io.easyIo.EasyInputMedia;
+import vlang.io.easyIo.EasyNLP;
+import vlang.io.easyIo.EasyOutputMedia;
+import vlang.io.media.InputMedia;
+import vlang.io.media.OutputMedia;
 import vlang.io.nlp.NLP;
 
 import java.io.IOException;
@@ -15,7 +18,7 @@ import java.util.logging.*;
 /**
  * 全局设置
  */
-public abstract class globalSetting {
+public abstract class GlobalSetting {
     /**
      * 全局信息是否已经初始化（是否执行过该类的init方法）
      */
@@ -30,21 +33,21 @@ public abstract class globalSetting {
     private static final String logPath= "log.txt";
 
     /**
-     * 输入媒体，配置后提供给{@link vlang.interpreter.globalInfo}中设置{@link vlang.io.input}类实例使用
+     * 输入媒体，配置后提供给{@link GlobalInfo}中设置{@link Input}类实例使用
      */
-    public static final inputMedia inMedia= new easyInputMedia();
+    public static final InputMedia inMedia= new EasyInputMedia();
     /**
-     * 输出媒体，配置后提供给{@link vlang.interpreter.globalInfo}中设置{@link vlang.io.output}类实例使用
+     * 输出媒体，配置后提供给{@link GlobalInfo}中设置{@link Output}类实例使用
      */
-    public static final outputMedia outMedia=new easyOutputMedia();
+    public static final OutputMedia outMedia=new EasyOutputMedia();
     /**
-     * 自然语言处理器，配置后提供给{@link vlang.interpreter.globalInfo}中设置{@link vlang.io.input}类实例使用
+     * 自然语言处理器，配置后提供给{@link GlobalInfo}中设置{@link Input}类实例使用
      */
-    public static final NLP NLprocessor=new easyNLP();
+    public static final NLP NLprocessor=new EasyNLP();
     /**
      * 语法分析器，配置后在{@link vlang.Main}中使用
      */
-    public static final parser parser=new jsonParser();
+    public static final Parser parser=new JsonParser();
     /**
      * 日志，配置后在各个类的方法中调用
      */

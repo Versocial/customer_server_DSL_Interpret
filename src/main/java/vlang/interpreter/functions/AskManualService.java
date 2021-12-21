@@ -1,64 +1,67 @@
 package vlang.interpreter.functions;
 
 import org.json.JSONObject;
-import vlang.globalSetting;
-import vlang.interpreter.function;
-import vlang.interpreter.globalInfo;
-import vlang.interpreter.registry;
+import vlang.interpreter.Function;
+import vlang.interpreter.GlobalInfo;
+import vlang.interpreter.Registry;
 
 import java.util.ArrayList;
 
 /**
- * 退出函数
+ * 未完成的函数：请求人工服务
  */
-public class exit extends function {
+public class AskManualService extends Function {
     /**
      * 函数名{@value}
      */
-    public static final String name="Exit";
+    public static final String name="Manual";
 
     /**
-     * @return 返回值为表示 退出执行器执行方法 的字符串。
+     * @return 终止执行器执行方法
      * @inheritDoc
      */
     @Override
-    public String exe(globalInfo globalInfo) {
-        globalSetting.log.info("exit.");
-        return registry.exit;
+    public String exe(GlobalInfo globalInfo) {
+        return Registry.exit;
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public function buildByJson(JSONObject jsonObject) {
-        return new exit();
+    public Function buildByJson(JSONObject jsonObject) {
+        AskManualService func=new AskManualService();
+        return func;
     }
+
     /**
      * @inheritDoc
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
-        return new JSONObject();
+        return null;
     }
+
     /**
-     * @return false:没有错误
+     * @return false，默认没有错误
      * @inheritDoc
      */
     @Override
     public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
         return false;
     }
+
     /**
-     * @return true：exit可以且必须作为一个步骤的最后一个函数
+     * @return true，该函数可以且必须作为步骤的最后一个函数。
      * @inheritDoc
      */
     @Override
     public boolean canBeEndFunction() {
         return true;
     }
+
     /**
-     * @return false：exit可以不作为一个步骤的函数却不是结尾
+     * @return false，该函数不可以作为一个步骤的中间执行（非最后一个）的函数
      * @inheritDoc
      */
     @Override

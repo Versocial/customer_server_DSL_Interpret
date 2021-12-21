@@ -78,7 +78,7 @@ loadScripts(document, 'script');</script>
 <h1 title="类 executor" class="title">类 executor</h1>
 </div>
 <div class="inheritance" title="继承树">java.lang.Object
-<div class="inheritance">vlang.interpreter.executor</div>
+<div class="inheritance">vlang.interpreter.Executor</div>
 </div>
 <section class="description">
 <hr>
@@ -165,14 +165,14 @@ extends java.lang.Object</pre>
 <tbody>
 <tr class="alt-color" id="i0">
 <td class="col-first"><code>void</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#addStep(vlang.interpreter.step)">addStep</a></span>&#8203;(<a href="step.html" title="vlang.interpreter中的类">step</a>&nbsp;step)</code></th>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#addStep(vlang.interpreter.Step)">addStep</a></span>&#8203;(<a href="step.html" title="vlang.interpreter中的类">step</a>&nbsp;step)</code></th>
 <td class="col-last">
 <div class="block">添加待执行的步骤。</div>
 </td>
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code>java.lang.Runnable</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#runner(vlang.interpreter.globalInfo)">runner</a></span>&#8203;(<a href="globalInfo.html" title="vlang.interpreter中的类">globalInfo</a>&nbsp;globalInfo)</code></th>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#runner(vlang.interpreter.GlobalInfo)">runner</a></span>&#8203;(<a href="globalInfo.html" title="vlang.interpreter中的类">globalInfo</a>&nbsp;globalInfo)</code></th>
 <td class="col-last">
 <div class="block">获取某个用户、某种媒体下（用户、媒体由globalInfo决定）执行器的执行方法。</div>
 </td>
@@ -251,7 +251,7 @@ extends java.lang.Object</pre>
 </section>
 </li>
 <li>
-<section class="detail" id="runner(vlang.interpreter.globalInfo)">
+<section class="detail" id="runner(vlang.interpreter.GlobalInfo)">
 <h3>runner</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">java.lang.Runnable</span>&nbsp;<span class="member-name">runner</span>&#8203;(<span class="parameters"><a href="globalInfo.html" title="vlang.interpreter中的类">globalInfo</a>&nbsp;globalInfo)</span></div>
 <div class="block">获取某个用户、某种媒体下（用户、媒体由globalInfo决定）执行器的执行方法。返回<code>Runnable</code>类实例方便并发执行时使用<code>Thread</code>类。</div>
@@ -262,7 +262,7 @@ extends java.lang.Object</pre>
 </section>
 </li>
 <li>
-<section class="detail" id="addStep(vlang.interpreter.step)">
+<section class="detail" id="addStep(vlang.interpreter.Step)">
 <h3>addStep</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">addStep</span>&#8203;(<span class="parameters"><a href="step.html" title="vlang.interpreter中的类">step</a>&nbsp;step)</span></div>
 <div class="block">添加待执行的步骤。</div>

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * 该类是执行器{@link executor}的步骤类：
+ * 该类是执行器{@link Executor}的步骤类：
  * 一个步骤包括顺序执行的多个函数。
  */
-public class step {
+public class Step {
     /**
      * name字段是步骤类的名称，也是区分不同步骤的唯一标识。
      */
@@ -15,14 +15,14 @@ public class step {
     /**
      * functions字段是该步骤中待顺序执行的各个字段。
      */
-    private final ArrayList<function> functions=new ArrayList<>();
+    private final ArrayList<Function> functions=new ArrayList<>();
 
 
         /**
          * 构造函数
          * @param name 步骤名
          */
-        public step(String name){
+        public Step(String name){
             this.name=name;
         }
 
@@ -30,7 +30,7 @@ public class step {
      * 添加函数到步骤最后，在构造该类实例时使用。
      * @param func 待添加的函数
      */
-    public void  addFunction(function func){
+    public void  addFunction(Function func){
             functions.add(func);
         }
 
@@ -39,11 +39,11 @@ public class step {
      * @param globalInfo 全局信息，包括用户信息、输入输出媒介等。
      * @return 返回下一个应该执行的步骤名。
      */
-    public String exe(globalInfo globalInfo){
-            String stepTogo =registry.goOn;//goOn表示继续执行当前步骤，否则表示结束当前步骤并退出或跳转到其他步骤。
-        for (vlang.interpreter.function function : functions) {
+    public String exe(GlobalInfo globalInfo){
+            String stepTogo = Registry.goOn;//goOn表示继续执行当前步骤，否则表示结束当前步骤并退出或跳转到其他步骤。
+        for (Function function : functions) {
             stepTogo = function.exe(globalInfo);
-            if (!Objects.equals(stepTogo, registry.goOn))
+            if (!Objects.equals(stepTogo, Registry.goOn))
                 break;
         }
             return stepTogo;
