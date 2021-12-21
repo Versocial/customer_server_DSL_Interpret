@@ -6,18 +6,20 @@ import vlang.io.easyIo.EasyOutputMedia;
  * 输出媒体。例如可以是一个语音合成并输出的设备，也可以如{@link EasyOutputMedia}是stdout。
  */
 public interface OutputMedia {
-   /**
-    * 通过媒体输出
-    * @param output 待转化输出的字符串。
-    */
-   public void puts(String output);
-   /**
-    * 启动
-    */
-   public void open();
+    /**
+     * 通过媒体输出
+     *
+     * @param output 待转化输出的字符串。
+     */
+    public void puts(String output);
 
-   /**
-    * 关闭
-    */
-   public void close();
+    /**
+     * 启动
+     */
+    public void open();
+
+    /**
+     * 关闭
+     */
+    public void close();
 }

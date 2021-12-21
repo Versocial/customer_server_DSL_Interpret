@@ -14,7 +14,7 @@ public class AskManualService extends Function {
     /**
      * 函数名{@value}
      */
-    public static final String name="Manual";
+    public static final String name = "Manual";
 
     /**
      * @return 终止执行器执行方法
@@ -30,7 +30,7 @@ public class AskManualService extends Function {
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
-        AskManualService func=new AskManualService();
+        AskManualService func = new AskManualService();
         return func;
     }
 

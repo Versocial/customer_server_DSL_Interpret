@@ -13,6 +13,7 @@ public class EasyRowInput implements RowInput {
 
     /**
      * 构造函数
+     *
      * @param information 原始输入的字符串
      */
     public EasyRowInput(String information) {
@@ -21,6 +22,7 @@ public class EasyRowInput implements RowInput {
 
     /**
      * 以字符串格式获取原始输入
+     *
      * @return 原始输入的字符串
      */
     @Override
@@ -30,6 +32,7 @@ public class EasyRowInput implements RowInput {
 
     /**
      * 类型总是为字符串
+     *
      * @return 返回值“String”标明是字符串类型
      */
     @Override

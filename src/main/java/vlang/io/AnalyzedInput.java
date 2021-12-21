@@ -12,14 +12,14 @@ public class AnalyzedInput {
 
     /**
      * 构造方法
+     *
      * @param information NLP分析后给出的结果
      */
-    public AnalyzedInput(String information){
-        info=information;
+    public AnalyzedInput(String information) {
+        info = information;
     }
 
     /**
-     *
      * @return NLP分析后给出的结果
      */
     public String getInfo() {

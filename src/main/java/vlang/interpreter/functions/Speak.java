@@ -17,11 +17,11 @@ public class Speak extends Function {
     /**
      * 函数名{@value}
      */
-    public static final String name="Speak";
+    public static final String name = "Speak";
     /**
      * 待输出的字符串序列
      */
-    private final ArrayList<Word> toSpeak=new ArrayList<>();
+    private final ArrayList<Word> toSpeak = new ArrayList<>();
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。
@@ -30,11 +30,11 @@ public class Speak extends Function {
     @Override
     public String exe(GlobalInfo globalInfo) {
         GlobalSetting.log.info("speak");
-        StringBuilder ans= new StringBuilder();
-        for( Word w : toSpeak) {
-            String str=w.getInfo();
-            if(w.getType()== Word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
-                str=globalInfo.clientInfo().get(w.getInfo());
+        StringBuilder ans = new StringBuilder();
+        for (Word w : toSpeak) {
+            String str = w.getInfo();
+            if (w.getType() == Word.Type.var)//若为变量，则在globalInfo中查找其字符串值以输出。
+                str = globalInfo.clientInfo().get(w.getInfo());
             ans.append(str);
         }
         globalInfo.getOut().puts(ans.toString());
@@ -46,9 +46,9 @@ public class Speak extends Function {
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
-        Speak func=new Speak();
-        for(int i = 0; i<jsonObject.getJSONArray(Registry.param).length(); i++){
-            String toAdd=jsonObject.getJSONArray(Registry.param).getString(i);
+        Speak func = new Speak();
+        for (int i = 0; i < jsonObject.getJSONArray(Registry.param).length(); i++) {
+            String toAdd = jsonObject.getJSONArray(Registry.param).getString(i);
             func.toSpeak.add(new Word(toAdd));
         }
         return func;
@@ -59,11 +59,11 @@ public class Speak extends Function {
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
-        JSONObject jsonObject=new JSONObject();
-        JSONArray jsonArray=new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
         for (String s : input)
             jsonArray.put(s);
-        jsonObject.put(Registry.param,jsonArray);
+        jsonObject.put(Registry.param, jsonArray);
         return jsonObject;
     }
 
@@ -78,6 +78,7 @@ public class Speak extends Function {
 
     /**
      * 返回false，speak不可以做步骤中最后一个函数。
+     *
      * @inheritDoc
      */
     @Override
@@ -87,6 +88,7 @@ public class Speak extends Function {
 
     /**
      * 返回true，在步骤中speak后面可以且必须跟着更多函数。
+     *
      * @inheritDoc
      */
     @Override
