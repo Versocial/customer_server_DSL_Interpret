@@ -62,8 +62,7 @@ public abstract class GlobalSetting {
         FileHandler fileHandler = null;
         try {
             fileHandler = new FileHandler(logPath);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         assert fileHandler != null;

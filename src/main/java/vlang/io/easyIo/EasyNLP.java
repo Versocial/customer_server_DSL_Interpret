@@ -42,6 +42,7 @@ public class EasyNLP implements NLP<EasyRowInput> {
     public void init() {
 
     }
+
     /**
      * @inheritDoc
      */

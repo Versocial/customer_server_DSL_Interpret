@@ -43,7 +43,7 @@ public class Listen extends Function {
     /**
      * 输入识别到的结果（来自自然语言处理的结果）对应的（散列到）跳转到的步骤名。
      */
-    HashMap<String, String> targets = new HashMap<>();
+    protected HashMap<String, String> targets = new HashMap<>();
 
     /**
      * @return 跳转到的步骤 或 输入失败 或 自然语言分析失败

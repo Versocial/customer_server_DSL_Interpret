@@ -21,7 +21,7 @@ public class Speak extends Function {
     /**
      * 待输出的字符串序列
      */
-    private final ArrayList<Word> toSpeak = new ArrayList<>();
+    protected final ArrayList<Word> toSpeak = new ArrayList<>();
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。

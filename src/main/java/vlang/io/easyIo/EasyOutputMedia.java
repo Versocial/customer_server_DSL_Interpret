@@ -15,6 +15,7 @@ public class EasyOutputMedia implements OutputMedia {
     public void puts(String output) {
         System.out.println(output);
     }
+
     /**
      * @inheritDoc
      */
@@ -22,6 +23,7 @@ public class EasyOutputMedia implements OutputMedia {
     public void open() {
 
     }
+
     /**
      * @inheritDoc
      */
