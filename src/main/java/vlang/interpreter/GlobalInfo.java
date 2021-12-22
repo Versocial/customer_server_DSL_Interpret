@@ -3,6 +3,7 @@ package vlang.interpreter;
 import vlang.GlobalSetting;
 import vlang.io.Input;
 import vlang.io.Output;
+import vlang.io.vlangIOException;
 
 /**
  * 全局信息，待扩展
@@ -31,6 +32,15 @@ public class GlobalInfo {
         clientInfo = new ClientInfo(clientID);
         in = new Input(GlobalSetting.NLprocessor, GlobalSetting.inMedia);
         out = new Output(GlobalSetting.outMedia);
+    }
+
+    /**
+     * 构造函数，自定义的.
+     */
+    public GlobalInfo(ClientInfo clientInfo, Input in, Output out) {
+        this.clientInfo = clientInfo;
+        this.in = in;
+        this.out = out;
     }
 
 
@@ -64,7 +74,7 @@ public class GlobalInfo {
     /**
      * 在执行器执行开始时使用
      */
-    public void start() {
+    public void start() throws vlangIOException {
         in.open();
         out.open();
     }
@@ -72,7 +82,7 @@ public class GlobalInfo {
     /**
      * 在执行器执行结束时使用
      */
-    public void finish() {
+    public void finish() throws vlangIOException {
         in.close();
         out.close();
     }

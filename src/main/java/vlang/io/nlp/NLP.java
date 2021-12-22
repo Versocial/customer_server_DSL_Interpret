@@ -3,6 +3,7 @@ package vlang.io.nlp;
 import vlang.io.AnalyzedInput;
 import vlang.io.Input;
 import vlang.io.RowInput;
+import vlang.io.vlangIOException;
 
 import java.util.Set;
 
@@ -25,10 +26,10 @@ public interface NLP<rowInputClass extends RowInput> {
     /**
      * 启动和初始化
      */
-    public void init();
+    public void init() throws vlangIOException;
 
     /**
      * 关闭
      */
-    public void close();
+    public void close() throws vlangIOException;
 }

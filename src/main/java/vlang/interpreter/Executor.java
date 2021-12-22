@@ -1,6 +1,7 @@
 package vlang.interpreter;
 
 import vlang.GlobalSetting;
+import vlang.io.vlangIOException;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -12,11 +13,11 @@ public class Executor {
     /**
      * 待执行的步骤。
      */
-    private final HashMap<String, Step> steps = new HashMap<>();
+    protected final HashMap<String, Step> steps = new HashMap<>();
     /**
      * 入口步骤，即执行器开始执行的第一个步骤。
      */
-    private String entryStep = Registry.exit;
+    protected String entryStep = Registry.exit;
 
 
     /**
@@ -41,7 +42,12 @@ public class Executor {
      */
     public Runnable runner(GlobalInfo globalInfo) {
         return () -> {
-            globalInfo.start();
+            try {
+                globalInfo.start();
+            } catch (vlangIOException e) {
+                e.printStackTrace();
+                return;
+            }
             String stepTogo = entryStep;
             while (!Objects.equals(stepTogo, Registry.exit)) {
                 if (!steps.containsKey(stepTogo)) {
@@ -51,7 +57,12 @@ public class Executor {
                 GlobalSetting.log.info("enter step: " + stepTogo);
                 stepTogo = steps.get(stepTogo).exe(globalInfo);
             }
-            globalInfo.finish();
+            try {
+                globalInfo.finish();
+            } catch (vlangIOException e) {
+                e.printStackTrace();
+                return;
+            }
         };
     }
 

@@ -25,7 +25,7 @@ public class Speak extends Function {
 
     /**
      * @return 返回值为表示 继续在当前步骤执行 的字符串。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String exe(GlobalInfo globalInfo) {
@@ -42,7 +42,7 @@ public class Speak extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
@@ -55,7 +55,7 @@ public class Speak extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
@@ -69,7 +69,7 @@ public class Speak extends Function {
 
     /**
      * @return false，表示默认没有错误。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
@@ -78,8 +78,8 @@ public class Speak extends Function {
 
     /**
      * 返回false，speak不可以做步骤中最后一个函数。
-     *
-     * @inheritDoc
+     * <p>
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeEndFunction() {
@@ -88,8 +88,8 @@ public class Speak extends Function {
 
     /**
      * 返回true，在步骤中speak后面可以且必须跟着更多函数。
-     *
-     * @inheritDoc
+     * <p>
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeNotEndFunction() {

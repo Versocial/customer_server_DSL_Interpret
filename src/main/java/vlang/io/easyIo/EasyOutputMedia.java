@@ -17,18 +17,16 @@ public class EasyOutputMedia implements OutputMedia {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void open() {
-
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void close() {
-
     }
 }

@@ -35,14 +35,14 @@ public class Output {
     /**
      * 启动
      */
-    public void open() {
+    public void open() throws vlangIOException {
         outputMedia.open();
     }
 
     /**
      * 关闭
      */
-    public void close() {
+    public void close() throws vlangIOException {
         outputMedia.close();
     }
 }

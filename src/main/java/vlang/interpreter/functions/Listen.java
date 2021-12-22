@@ -47,7 +47,7 @@ public class Listen extends Function {
 
     /**
      * @return 跳转到的步骤 或 输入失败 或 自然语言分析失败
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String exe(GlobalInfo globalInfo) {
@@ -66,7 +66,7 @@ public class Listen extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
@@ -79,7 +79,7 @@ public class Listen extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
@@ -197,7 +197,7 @@ public class Listen extends Function {
 
     /**
      * @return 若listen函数的跳转Step中有未声明的，则报错并返回true，否则返回false
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
@@ -214,7 +214,7 @@ public class Listen extends Function {
 
     /**
      * @return true，listen函数可以且只能作为一个步骤的最后一个函数。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeEndFunction() {
@@ -223,7 +223,7 @@ public class Listen extends Function {
 
     /**
      * @return false，listen函数后面不能跟着更多函数。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeNotEndFunction() {

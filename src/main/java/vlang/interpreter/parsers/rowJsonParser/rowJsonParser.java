@@ -12,7 +12,6 @@ import java.io.*;
 
 import vlang.interpreter.Executor;
 import vlang.interpreter.Registry;
-import vlang.interpreter.Parser;
 
 /**
  * Parser.To convert the source file into an intermediate script that can be executed by the executor {@link Executor}.

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import vlang.interpreter.GlobalInfo;
 import vlang.interpreter.parsers.Word;
+import vlang.io.vlangIOException;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ class SpeakTest {
     private GlobalInfo globalInfo = new GlobalInfo(100);
 
     @Test
-    void exe() {
+    void exe() throws vlangIOException {
         globalInfo.start();
         ((Speak) speak.buildByJson(speak.buildJson(input))).exe(globalInfo);
         globalInfo.finish();

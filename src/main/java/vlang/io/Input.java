@@ -1,5 +1,6 @@
 package vlang.io;
 
+import vlang.GlobalSetting;
 import vlang.interpreter.Executor;
 import vlang.interpreter.Registry;
 import vlang.io.media.InputMedia;
@@ -47,7 +48,7 @@ public class Input {
     /**
      * 启动
      */
-    public void open() {
+    public void open() throws vlangIOException {
         media.open();
         NLProcessor.init();
     }
@@ -55,9 +56,9 @@ public class Input {
     /**
      * 关闭
      */
-    public void close() {
-        NLProcessor.close();
+    public void close() throws vlangIOException {
         media.close();
+        NLProcessor.close();
     }
 
 }

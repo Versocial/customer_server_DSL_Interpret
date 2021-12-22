@@ -19,7 +19,7 @@ public class Exit extends Function {
 
     /**
      * @return 返回值为表示 退出执行器执行方法 的字符串。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String exe(GlobalInfo globalInfo) {
@@ -28,7 +28,7 @@ public class Exit extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
@@ -36,7 +36,7 @@ public class Exit extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
@@ -45,7 +45,7 @@ public class Exit extends Function {
 
     /**
      * @return false:没有错误
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
@@ -54,7 +54,7 @@ public class Exit extends Function {
 
     /**
      * @return true：exit可以且必须作为一个步骤的最后一个函数
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeEndFunction() {
@@ -63,7 +63,7 @@ public class Exit extends Function {
 
     /**
      * @return false：exit可以不作为一个步骤的函数却不是结尾
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeNotEndFunction() {

@@ -18,7 +18,7 @@ public class AskManualService extends Function {
 
     /**
      * @return 终止执行器执行方法
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String exe(GlobalInfo globalInfo) {
@@ -26,7 +26,7 @@ public class AskManualService extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Function buildByJson(JSONObject jsonObject) {
@@ -35,7 +35,7 @@ public class AskManualService extends Function {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public JSONObject buildJson(ArrayList<String> input) {
@@ -44,7 +44,7 @@ public class AskManualService extends Function {
 
     /**
      * @return false，默认没有错误
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasErrorByJson(JSONObject func, JSONObject executor) {
@@ -53,7 +53,7 @@ public class AskManualService extends Function {
 
     /**
      * @return true，该函数可以且必须作为步骤的最后一个函数。
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeEndFunction() {
@@ -62,7 +62,7 @@ public class AskManualService extends Function {
 
     /**
      * @return false，该函数不可以作为一个步骤的中间执行（非最后一个）的函数
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean canBeNotEndFunction() {

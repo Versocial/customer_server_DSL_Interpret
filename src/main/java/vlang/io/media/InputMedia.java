@@ -2,6 +2,7 @@ package vlang.io.media;
 
 import vlang.io.Input;
 import vlang.io.RowInput;
+import vlang.io.vlangIOException;
 
 /**
  * 原始输入类，提供给{@link Input}读取输入的媒体。
@@ -23,10 +24,10 @@ public interface InputMedia<rowInputClass extends RowInput> {
     /**
      * 启动
      */
-    public void open();
+    public void open() throws vlangIOException;
 
     /**
      * 关闭
      */
-    public void close();
+    public void close() throws vlangIOException;
 }

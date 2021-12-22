@@ -1,4 +1,16 @@
-12月 21, 2021 6:22:59 下午 vlang.GlobalSetting init
+12月 22, 2021 2:04:29 下午 vlang.GlobalSetting init
 信息:  log start..
-12月 21, 2021 6:22:59 下午 vlang.interpreter.parsers.JsonParser parse
-信息: Open file Successfully:/V:/outworkspace/JavaWorkSpace/vlang_interpreter/build/resources/main/test.txt
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step welcome
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step complainProc
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step thanks
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step billProc
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step silenceProc
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser parse
+警告: Row Parse Success.
+12月 22, 2021 2:04:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParserTest parse
+警告: Parse true

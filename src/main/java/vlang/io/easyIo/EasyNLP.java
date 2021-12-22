@@ -12,8 +12,8 @@ import java.util.Set;
 public class EasyNLP implements NLP<EasyRowInput> {
     /**
      * 这里用判断字符串中是否存在targets中某项为子串替代语法分析。
-     *
-     * @inheritDoc
+     * <p>
+     * {@inheritDoc}
      */
     @Override
     public AnalyzedInput analyzeResult(EasyRowInput input, Set<String> targets) {
@@ -36,18 +36,16 @@ public class EasyNLP implements NLP<EasyRowInput> {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void init() {
-
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void close() {
-
     }
 }

@@ -1,6 +1,7 @@
 package vlang.io.easyIo;
 
 import vlang.io.media.InputMedia;
+import vlang.io.vlangIOException;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -68,7 +69,7 @@ public class EasyInputMedia implements InputMedia<EasyRowInput> {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public EasyRowInput gets(long silenceTime) {
@@ -92,8 +93,11 @@ public class EasyInputMedia implements InputMedia<EasyRowInput> {
         return new EasyRowInput(ans);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void open() {
+    public void open() throws vlangIOException {
         frame = new JFrame("Waiting for your input...");
         frame.setSize(1000, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +113,9 @@ public class EasyInputMedia implements InputMedia<EasyRowInput> {
         userText.setDocument(document);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void close() {
         frame.dispose();
@@ -122,7 +129,7 @@ public class EasyInputMedia implements InputMedia<EasyRowInput> {
      * 计时器，当连续沉默时间超过silenceTime时设置超时信号（timeOut设置为true）。
      */
     protected class clock implements Runnable {
-        private long silenceTime;//毫秒，最长沉默时间
+        private final long silenceTime;//毫秒，最长沉默时间
         private long sleepTime;//毫秒，下一次判断是否超时前需要等待的时间
 
         clock(long silenceTime) {
