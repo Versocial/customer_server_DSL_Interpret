@@ -67,8 +67,8 @@ public abstract class GlobalSetting {
         }
         assert fileHandler != null;
         fileHandler.setFormatter(new SimpleFormatter());
-        log.addHandler(fileHandler);
-        //log.addHandler(new ConsoleHandler());
+        //log.addHandler(fileHandler);
+        log.addHandler(new ConsoleHandler());
         log.setFilter((logRecord) -> true);
         log.info(" log start..");
         initiated = true;

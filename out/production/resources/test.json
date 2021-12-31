@@ -1,0 +1,20 @@
+{
+    "@entry":"welcome",
+    "welcome":[
+            {
+                "function":"Speak",
+                "param":["param1","param2"]
+
+            },{
+                "function":"Listen",
+                "time":20000,
+                "goto":{
+                        "ans1":"welcome",
+                        "ans2":"goon",
+                        "$#default":"@#exit"
+                }
+            }
+        ]
+
+
+}

@@ -26,7 +26,11 @@ vlang是一门用于编写客服机器人的领域专用语言。
 
    入口标记表示该步骤(Step)为执行时的第一个步骤(Step)。
 
-4. 步骤(Step)格式。
+4. 源文件由多个步骤构成，其格式可以表示如下。
+
+   [ 步骤(Step) ]*
+
+5. 步骤(Step)格式。
 
    Step ID [@entry]
 
@@ -44,23 +48,33 @@ vlang是一门用于编写客服机器人的领域专用语言。
 
    
 
-5. 函数(Function)格式和功能。
+6. 函数(Function)格式和功能。
 
-| 函数名 | 格式                               | 功能     | 代码示例                     |
-| ------ | ---------------------------------- | -------- | ---------------------------- |
-| Speak  | Speak {[$用户信息变量]\|[字符串]}* | 输出句子 | Speak "Welcome, " $name " !" |
-| Listen | 见表格后                           | 听取输入 | 见表格后                     |
-| Exit   | Exit                               | 退出对话 | Exit                         |
+| 函数名 | 格式                               | 功能     | 代码示例                     | 位置   |
+| ------ | ---------------------------------- | -------- | ---------------------------- | ------ |
+| Speak  | Speak {[$用户信息变量]\|[字符串]}* | 输出句子 | Speak "Welcome, " $name " !" | 步骤中 |
+| Listen | 见表格后                           | 听取输入 | 见表格后                     | 步骤末 |
+| Exit   | Exit                               | 退出对话 | Exit                         | 步骤末 |
 
 Listen格式：
 
 ​	Listen 最长沉默时间(正整数，单位秒)
 
-​	[Branch 字符串 步骤(Step)名]*
+​	[Branch 字符串(表示若分析出此结果则转到) 步骤(Step)名]*
 
 ​	[Silence 步骤(Step)名]
 
 ​	[Default 步骤(Step)名]
+
+即：
+
+​	一个Listen至多有1个Silence和1个Default子句，可有多个Branch子句。
+
+​	一个Branch子句表示一个分析结果转到的步骤；
+
+​	Silence子句表示沉默时转到的步骤；
+
+​	Default子句表示默认转到的步骤。
 
 Listen 代码示例：
 
@@ -122,7 +136,7 @@ Silence silenceProc
 
 
 
-## vlang 使用流程：
+## vlang 使用流程（人机接口）：
 
 1. 编写源代码。
 
@@ -130,9 +144,27 @@ Silence silenceProc
 
 2. 语法分析生成中间脚本。
 
+   使用前进入目录
+
+   ```vlang_interpreter\out\artifacts\mainJar```并打开命令行cmd
+
+   可以使用命令将源文件test.txt  分析得到输出的中间脚本out.json ：
+
+   ```java -jar vlang_interpreter.main.jar parse test.txt out.json``` 
+
 3. 执行。
+
+   使用前进入目录
+
+   ```vlang_interpreter\out\artifacts\mainJar```并打开命令行cmd
+
+   可以使用如下命令运行中间脚本out.json：
+
+   ```java -jar vlang_interpreter.main.jar exe out.json```
 
 4. 默认输入：弹出的JFrame内文本框。
 
 5. 默认输出：stdout。
+
+6. 注意默认会输出log日志到目录下。
 

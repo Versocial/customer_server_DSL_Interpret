@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - MainTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>MainTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/vlang.html">vlang</a> &gt; MainTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.437s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testMain()</td>
+<td class="success">0.437s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>&lt;'name' of user 100&gt; Hello, 您好请问有什么可以帮您?
+听不清 请您大声一点可以吗
+听不清 请您大声一点可以吗
+您的意见是我们改进工作的动力 请问您还有什么补充?
+您的意见是我们改进工作的动力 请问您还有什么补充?
+您的意见是我们改进工作的动力 请问您还有什么补充?
+感谢您的来电 再见
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.JsonParser parse
+信息: Open file Successfully:src\test\resources\test.txt
+12月 31, 2021 3:28:29 下午 vlang.GlobalSetting init
+信息:  log start..
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step welcome
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step thanks
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step billProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser parse
+警告: Row Parse Success.
+12月 31, 2021 3:28:29 下午 vlang.interpreter.exefactorys.ExeFactoryByJson createBy
+信息: Open file Successfully:src\test\resources\out.json
+12月 31, 2021 3:28:29 下午 vlang.interpreter.exefactorys.ExeFactoryByJson createBy
+信息: starting interpreter by src\test\resources\out.json..
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: welcome
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Silence
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Silence
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:投诉
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:别挂
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:别挂
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Default
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: thanks
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Exit exe
+信息: exit.
+12月 31, 2021 3:28:29 下午 vlang.MainTest testMain
+信息: finish a dialog.
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.1</a> at 2021年12月31日 下午3:28:29</p>
+</div>
+</div>
+</body>
+</html>

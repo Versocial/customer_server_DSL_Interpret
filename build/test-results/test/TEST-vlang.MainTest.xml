@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="vlang.MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-31T07:28:29" hostname="DESKTOP-2070HSH" time="0.437">
+  <properties/>
+  <testcase name="testMain()" classname="vlang.MainTest" time="0.437"/>
+  <system-out><![CDATA[<'name' of user 100> Hello, 您好请问有什么可以帮您?
+听不清 请您大声一点可以吗
+听不清 请您大声一点可以吗
+您的意见是我们改进工作的动力 请问您还有什么补充?
+您的意见是我们改进工作的动力 请问您还有什么补充?
+您的意见是我们改进工作的动力 请问您还有什么补充?
+感谢您的来电 再见
+]]></system-out>
+  <system-err><![CDATA[12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.JsonParser parse
+信息: Open file Successfully:src\test\resources\test.txt
+12月 31, 2021 3:28:29 下午 vlang.GlobalSetting init
+信息:  log start..
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step welcome
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step thanks
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step billProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser start
+信息: Finish parse Step silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.parsers.rowJsonParser.RowJsonParser parse
+警告: Row Parse Success.
+12月 31, 2021 3:28:29 下午 vlang.interpreter.exefactorys.ExeFactoryByJson createBy
+信息: Open file Successfully:src\test\resources\out.json
+12月 31, 2021 3:28:29 下午 vlang.interpreter.exefactorys.ExeFactoryByJson createBy
+信息: starting interpreter by src\test\resources\out.json..
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: welcome
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Silence
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Silence
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: silenceProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:投诉
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:别挂
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:别挂
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: complainProc
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Listen exe
+信息: listen:$@Default
+12月 31, 2021 3:28:29 下午 vlang.interpreter.Executor lambda$runner$0
+信息: enter step: thanks
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Speak exe
+信息: speak
+12月 31, 2021 3:28:29 下午 vlang.interpreter.functions.Exit exe
+信息: exit.
+12月 31, 2021 3:28:29 下午 vlang.MainTest testMain
+信息: finish a dialog.
+]]></system-err>
+</testsuite>

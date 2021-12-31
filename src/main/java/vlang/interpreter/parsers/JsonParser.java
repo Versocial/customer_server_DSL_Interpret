@@ -7,10 +7,8 @@ import vlang.interpreter.Parser;
 import vlang.interpreter.parsers.rowJsonParser.RowJsonParser;
 import vlang.interpreter.Registry;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 把JSONObject作为输出（执行器执行的中间脚本为json文件）的语法分析器。
@@ -48,7 +46,7 @@ public class JsonParser implements Parser {
         //将结果写入输出文件
         BufferedWriter writer;
         try {
-            writer = new BufferedWriter(new FileWriter(outPath));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(outPath), false), StandardCharsets.UTF_8));
             writer.write(jsonObject.toString());
             writer.close();
         } catch (IOException e) {

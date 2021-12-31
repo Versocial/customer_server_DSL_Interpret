@@ -12,7 +12,6 @@ import java.io.*;
 
 import vlang.interpreter.Executor;
 import vlang.interpreter.Registry;
-import vlang.interpreter.Parser;
 
 /**
  * Token Manager.
